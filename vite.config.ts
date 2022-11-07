@@ -1,13 +1,9 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-import Unocss from 'unocss/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
@@ -37,11 +33,6 @@ export default defineConfig({
   },
 
   plugins: [
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-      reactivityTransform: true
-    }),
-
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
       imports: [
@@ -63,23 +54,6 @@ export default defineConfig({
       dirs: ['src/composables', 'src/store'],
       vueTemplate: true
     }),
-
-    // https://github.com/antfu/unplugin-vue-components
-    Components({
-      // allow auto load markdown components under `./src/components/`
-      extensions: ['vue', 'md'],
-      // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: 'src/components.d.ts',
-      dirs: ['src/components', 'src/views'],
-      resolvers: [
-        NaiveUiResolver(),
-        IconsResolver({
-          customCollections: ['custom'],
-          componentPrefix: 'icon'
-        })
-      ]
-    }),
     Icons({
       compiler: 'vue3',
       customCollections: {
@@ -91,8 +65,6 @@ export default defineConfig({
     }),
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss(),
-
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
       registerType: 'autoUpdate',
