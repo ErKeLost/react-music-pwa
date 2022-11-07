@@ -15,15 +15,19 @@ function welcome(title: string) {
   const [color, invertedColor] = getRandomColor()
 
   const styles = [
-    'font-size: 40px',
+    'font-size: 12px',
     `color: ${color}`,
     `border: 1px solid ${invertedColor}`,
     `background-color: ${invertedColor}`,
     'border-radius: 5px',
-    'padding: 10px'
+    'padding: 5px'
   ].join(';')
 
-  console.log(`%c=== ${title} ===`, styles)
+  console.log(`%c🎖️🎖️ ${`Adny Music`} 🎅🎅`, styles)
+  console.log(
+    `%c✨✨✨ Welcome ${title} 🌈🌈🌈`,
+    'color: #fff; border-radius: 5px; padding: 5px 25px;background: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%)'
+  )
 }
 
 export default welcome

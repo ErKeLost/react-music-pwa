@@ -1,6 +1,8 @@
 // import Layout from '@/layout'
 import axios from 'axios'
 import Button from '@mui/material/Button'
+import { useRoutes } from 'react-router-dom'
+import { routes } from './router'
 // import { useEffect, useState } from 'react'
 function App() {
   const [banner, setBanner] = useState([])
@@ -19,6 +21,7 @@ function App() {
       {banner?.data?.banners?.map((item) => {
         return <img src={item.imageUrl} key={item.imageUrl} />
       })}
+      <div className='router'>{useRoutes(routes)}</div>
     </div>
   )
 }
