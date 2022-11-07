@@ -36,14 +36,11 @@ export default defineConfig({
     react(),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'react'
-      ],
+      imports: ['react'],
       dts: 'src/auto-imports.d.ts',
       dirs: ['src/components', 'src/store']
     }),
     Icons({
-      compiler: 'react',
       customCollections: {
         custom: FileSystemIconLoader(`${vitePath.src}/assets/svg`)
       },

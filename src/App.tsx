@@ -1,5 +1,6 @@
 // import Layout from '@/layout'
 import axios from 'axios'
+import Button from '@mui/material/Button'
 // import { useEffect, useState } from 'react'
 function App() {
   const [banner, setBanner] = useState([])
@@ -12,7 +13,8 @@ function App() {
 
   return (
     <div>
-      <div>123123132</div>
+      <Button variant="contained">Contained</Button>
+      <br/>
       {/* <Layout /> */}
       {banner?.data?.banners?.map((item) => {
         return <img src={item.imageUrl} key={item.imageUrl} />
