@@ -15,7 +15,6 @@ import react from '@vitejs/plugin-react'
 export function resolvePath(rootPath: string, basePath: string) {
   const root = fileURLToPath(new URL(rootPath, basePath))
   const src = `${root}src`
-
   return {
     root,
     src
