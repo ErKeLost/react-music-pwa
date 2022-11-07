@@ -7,7 +7,7 @@ import Inspect from 'vite-plugin-inspect'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-
+import react from '@vitejs/plugin-react'
 /**
  * 解析路径
  * @param basePath - 基础路径
@@ -33,26 +33,12 @@ export default defineConfig({
   },
 
   plugins: [
+    react(),
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'vue',
-        'vue-router',
-        'pinia',
-        '@vueuse/head',
-        '@vueuse/core',
-        {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar'
-          ]
-        }
-      ],
+      imports: [],
       dts: 'src/auto-imports.d.ts',
-      dirs: ['src/composables', 'src/store'],
-      vueTemplate: true
+      dirs: ['src/composables', 'src/store']
     }),
     Icons({
       compiler: 'vue3',
