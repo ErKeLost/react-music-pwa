@@ -34,7 +34,7 @@ specifiers:
   typescript: ^4.8.3
   unplugin-auto-import: ^0.11.4
   unplugin-icons: ^0.14.13
-  vite: ^3.2.2
+  vite: 4.0.0-alpha.0
   vite-plugin-inspect: ^0.7.3
   vite-plugin-pwa: ^0.13.1
 
@@ -63,8 +63,8 @@ devDependencies:
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.8
   '@types/styled-components': 5.1.26
-  '@vitejs/plugin-react': 2.2.0_vite@3.2.2
-  '@vitejs/plugin-vue': 3.1.2_vite@3.2.2
+  '@vitejs/plugin-react': 2.2.0_vite@4.0.0-alpha.0
+  '@vitejs/plugin-vue': 3.1.2_vite@4.0.0-alpha.0
   cross-env: 7.0.3
   eslint: 8.24.0
   esno: 0.16.3
@@ -74,9 +74,9 @@ devDependencies:
   typescript: 4.8.4
   unplugin-auto-import: 0.11.4
   unplugin-icons: 0.14.13
-  vite: 3.2.2
-  vite-plugin-inspect: 0.7.5_vite@3.2.2
-  vite-plugin-pwa: 0.13.1_vite@3.2.2
+  vite: 4.0.0-alpha.0_@types+node@18.11.9
+  vite-plugin-inspect: 0.7.5_vite@4.0.0-alpha.0
+  vite-plugin-pwa: 0.13.1_vite@4.0.0-alpha.0
 
 packages:
 
@@ -2098,7 +2098,7 @@ packages:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
-  /@vitejs/plugin-react/2.2.0_vite@3.2.2:
+  /@vitejs/plugin-react/2.2.0_vite@4.0.0-alpha.0:
     resolution: {integrity: sha512-FFpefhvExd1toVRlokZgxgy2JtnBOdp4ZDsq7ldCWaqGSGn9UhWMAVm/1lxPL14JfNS5yGz+s9yFrQY6shoStA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -2111,19 +2111,19 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.20.2
       magic-string: 0.26.7
       react-refresh: 0.14.0
-      vite: 3.2.2
+      vite: 4.0.0-alpha.0_@types+node@18.11.9
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue/3.1.2_vite@3.2.2:
+  /@vitejs/plugin-vue/3.1.2_vite@4.0.0-alpha.0:
     resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 3.2.2
+      vite: 4.0.0-alpha.0_@types+node@18.11.9
     dev: true
 
   /@xobotyi/scrollbar-width/1.9.5:
@@ -4169,6 +4169,14 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /rollup/3.2.5:
+    resolution: {integrity: sha512-/Ha7HhVVofduy+RKWOQJrxe4Qb3xyZo+chcpYiD8SoQa4AG7llhupUtyfKSSrdBM2mWJjhM8wZwmbY23NmlIYw==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /rtl-css-js/1.16.0:
     resolution: {integrity: sha512-Oc7PnzwIEU4M0K1J4h/7qUUaljXhQ0kCObRsZjxs2HjkpKsnoTMvSmvJ4sqgJZd0zBoEfAyTdnK/jMIYvrjySQ==}
     dependencies:
@@ -4687,7 +4695,7 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /vite-plugin-inspect/0.7.5_vite@3.2.2:
+  /vite-plugin-inspect/0.7.5_vite@4.0.0-alpha.0:
     resolution: {integrity: sha512-O8xq6dbvD1G7le75u6BfQTXJDUMXcRYlMVPzUpRjSB6hLyqH6BNnNkNrb/cVgCNNmKwk7dX+H2I+XVU2xpJk9Q==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -4699,12 +4707,12 @@ packages:
       kolorist: 1.6.0
       sirv: 2.0.2
       ufo: 0.8.5
-      vite: 3.2.2
+      vite: 4.0.0-alpha.0_@types+node@18.11.9
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.13.1_vite@3.2.2:
+  /vite-plugin-pwa/0.13.1_vite@4.0.0-alpha.0:
     resolution: {integrity: sha512-NR3dIa+o2hzlzo4lF4Gu0cYvoMjSw2DdRc6Epw1yjmCqWaGuN86WK9JqZie4arNlE1ZuWT3CLiMdiX5wcmmUmg==}
     peerDependencies:
       vite: ^3.1.0
@@ -4713,7 +4721,7 @@ packages:
       fast-glob: 3.2.12
       pretty-bytes: 6.0.0
       rollup: 2.79.1
-      vite: 3.2.2
+      vite: 4.0.0-alpha.0_@types+node@18.11.9
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
@@ -4721,17 +4729,20 @@ packages:
       - supports-color
     dev: true
 
-  /vite/3.2.2:
-    resolution: {integrity: sha512-pLrhatFFOWO9kS19bQ658CnRYzv0WLbsPih6R+iFeEEhDOuYgYCX2rztUViMz/uy/V8cLCJvLFeiOK7RJEzHcw==}
+  /vite/4.0.0-alpha.0_@types+node@18.11.9:
+    resolution: {integrity: sha512-UMr6J9x56eVrse2LHJemTmCaDVWKyTpJtODDmlM66y5IEin3wJEcX9+0DNZKHocHpn51grS35PV1jk4bBNXriA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
+      '@types/node': '>= 14'
       less: '*'
       sass: '*'
       stylus: '*'
       sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
+      '@types/node':
+        optional: true
       less:
         optional: true
       sass:
@@ -4743,10 +4754,11 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 18.11.9
       esbuild: 0.15.10
       postcss: 8.4.18
       resolve: 1.22.1
-      rollup: 2.79.1
+      rollup: 3.2.5
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
