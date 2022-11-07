@@ -88,7 +88,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://47.95.215.156:3333',
-        target: 'http://localhost:3333',
+        target: 'https://music-erkelost.vercel.app/',
         changeOrigin: true,
         // eslint-disable-next-line @typescript-eslint/no-shadow
         rewrite: (path) => path.replace(/^\/api/, '')
