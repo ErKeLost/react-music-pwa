@@ -1,6 +1,6 @@
 // import Layout from '@/layout'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 function App() {
   const [banner, setBanner] = useState([])
   useEffect(() => {
