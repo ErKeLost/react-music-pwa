@@ -57,7 +57,7 @@ const themes: Record<Themes, ThemeOptions> = {
         paper: '#171717'
       },
       primary: {
-        main: '#333'
+        main: '#bfa'
       }
     }
   })
