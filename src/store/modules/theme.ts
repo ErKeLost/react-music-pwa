@@ -5,7 +5,12 @@ const themeSlice = createSlice({
   initialState: {
     mode: 'light'
   },
-  reducers: {}
+  reducers: {
+    changeTheme(state) {
+      state.mode = state.mode === 'light' ? 'dark' : 'light'
+    }
+  }
 })
 
+export const { changeTheme } = themeSlice.actions
 export default themeSlice.reducer
