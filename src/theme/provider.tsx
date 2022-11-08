@@ -16,6 +16,7 @@ function CustomThemeProvider({ children }: CustomThemeProviderProps) {
     shallowEqual
   )
   return (
+    // @ts-ignore
     <ThemeProvider theme={createTheme(themes[mode])}>{children}</ThemeProvider>
   )
 }
