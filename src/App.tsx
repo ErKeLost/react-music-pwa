@@ -1,40 +1,18 @@
-// import Layout from '@/layout'
-import { Suspense } from 'react'
 import axios from 'axios'
-import Button from '@mui/material/Button'
-import { Link, useRoutes } from 'react-router-dom'
-import { routes } from './router'
 import { useEffect, useState } from 'react'
-import { useMusicDispatch } from '@/store'
-import { changeTheme } from './store/modules/theme'
+import Layout from '@/layout'
+
 function App() {
   const [banner, setBanner] = useState<any[]>([])
   useEffect(() => {
-    axios.get('https://music-erkelost.vercel.app/banner').then((res) => {
+    axios.get('https://music-erkelost.vercel.app/banner').then((res: any) => {
       return setBanner(res)
     })
   }, [])
-  console.log('我被渲染了', banner)
-  const dispatch = useMusicDispatch()
-  function handleTheme() {
-    dispatch(changeTheme())
-  }
-
   return (
     <div>
-      <Link to="/discover">发现音乐</Link>
-      <Link to="/mine">我的</Link>
-      <Link to="/mv">Mv</Link>
-      <Button onClick={handleTheme} variant="contained">
-        Contained
-      </Button>
-      <br />
-      {/* <Layout /> */}
-
-      <Suspense fallback="loading">
-        <div className="router">{useRoutes(routes)}</div>
-      </Suspense>
-      {banner?.data?.banners?.map((item) => {
+      <Layout />
+      {banner?.data?.banners?.map((item: any) => {
         return <img src={item.imageUrl} key={item.imageUrl} />
       })}
     </div>
