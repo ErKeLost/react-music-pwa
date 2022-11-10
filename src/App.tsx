@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeTheme } from './store/modules/theme'
 function App() {
-  const [banner, setBanner] = useState([])
+  const [banner, setBanner] = useState<any[]>([])
   useEffect(() => {
     axios.get('https://music-erkelost.vercel.app/banner').then((res) => {
       return setBanner(res)
