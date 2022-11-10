@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import { Link, useRoutes } from 'react-router-dom'
 import { routes } from './router'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useMusicDispatch } from '@/store'
 import { changeTheme } from './store/modules/theme'
 function App() {
   const [banner, setBanner] = useState<any[]>([])
@@ -15,7 +15,7 @@ function App() {
     })
   }, [])
   console.log('我被渲染了', banner)
-  const dispatch = useDispatch()
+  const dispatch = useMusicDispatch()
   function handleTheme() {
     dispatch(changeTheme())
   }

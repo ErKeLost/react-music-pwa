@@ -1,5 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useSelector, TypedUseSelectorHook } from 'react-redux'
+import {
+  useSelector,
+  TypedUseSelectorHook,
+  DispatchType,
+  useDispatch,
+  shallowEqual
+} from 'react-redux'
 import themeReducer from './modules/theme'
 const store = configureStore({
   reducer: {
@@ -9,8 +15,11 @@ const store = configureStore({
 
 type GetStoreStateType = typeof store.getState
 type IRootState = ReturnType<GetStoreStateType>
+type DispatchType = typeof store.dispatch
 // 指定类型
-export const useMusicStoreSelector: TypedUseSelectorHook<IRootState> =
+export const useMusicSelector: TypedUseSelectorHook<IRootState> =
   useSelector
+export const useMusicDispatch: () => DispatchType = useDispatch
+export const shallowEqualMusic = shallowEqual
 export { IRootState }
 export default store
