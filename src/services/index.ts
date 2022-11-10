@@ -1,7 +1,7 @@
 import Request from './request'
 
 const request = new Request({
-  baseURL: '',
+  baseURL: '/api',
   timeout: 60000,
   interceptors: {
     requestInterceptor: (config: any) => {
