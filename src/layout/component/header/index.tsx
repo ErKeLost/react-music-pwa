@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useMusicDispatch } from '@/store'
 import { changeTheme } from '@/store/modules/theme'
 import Button from '@mui/material/Button'
+import { HeaderWrapper } from './style'
 
 interface IProps {
   children?: ReactNode
@@ -15,14 +16,14 @@ const Header: FC<IProps> = () => {
     dispatch(changeTheme())
   }
   return (
-    <div>
+    <HeaderWrapper>
       <Link to="/discover">发现音乐</Link>
       <Link to="/mine">我的</Link>
       <Link to="/mv">Mv</Link>
       <Button onClick={handleTheme} variant="contained">
         Contained
       </Button>
-    </div>
+    </HeaderWrapper>
   )
 }
 
