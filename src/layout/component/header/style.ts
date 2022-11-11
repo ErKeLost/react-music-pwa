@@ -76,8 +76,14 @@ export const HeaderRight = styled.div`
   align-items: center;
   color: #787878;
   font-size: 12px;
+  .MuiInputBase-root {
+    border-radius:50px;
+  }
   .login {
     margin-left: 20px;
+    button {
+      border-radius: 20px;
+    }
   }
   > .search {
     width: 208px;
