@@ -41,13 +41,15 @@ const themes: Record<Themes, ThemeOptions> = {
       mode: 'light',
       background: {
         default: '#fafafa',
+        base: '#242424',
         paper: '#fff'
       },
       color: {
         default: '#000'
       },
       primary: {
-        main: '#3f51b5'
+        main: '#C20C0C',
+        base: '#000'
       }
     }
   }),
@@ -57,13 +59,15 @@ const themes: Record<Themes, ThemeOptions> = {
       mode: 'dark',
       background: {
         default: '#111',
+        base: '#242424',
         paper: '#171717'
       },
       color: {
         default: '#fff'
       },
       primary: {
-        main: '#fba'
+        main: '#C20C0C',
+        base: '#000'
       }
     }
   })

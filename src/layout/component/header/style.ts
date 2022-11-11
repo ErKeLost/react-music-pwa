@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+console.log(import.meta)
+
 export const HeaderWrapper = styled.div`
   height: 75px;
-  background-color: ${(props) => props.theme.palette.background.default};
+  background-color: ${(props) => props.theme.palette.background.base};
   font-size: 14px;
 
   .content {
@@ -46,6 +48,7 @@ export const HeaderLeft = styled.div`
           width: 28px;
           height: 19px;
           background-position: -190px 0;
+          background-image: url('../../../src/assets/img/sprite_01.png');
           top: 20px;
           right: -15px;
         }
@@ -54,7 +57,7 @@ export const HeaderLeft = styled.div`
       &:hover a,
       .active {
         color: #fff;
-        background: ${(props) => props.theme.palette.primary.main};
+        background: ${(props) => props.theme.palette.primary.base};
       }
 
       .active .icon {

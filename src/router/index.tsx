@@ -61,6 +61,6 @@ export const routes: RouteObject[] & any = [
   {
     path: '/mv',
     element: <Mv />,
-    title: 'Mv'
+    title: 'Mv排行'
   }
 ]
