@@ -12,7 +12,7 @@ const Ranking = lazy(() => import('~/views/ranking'))
 const SongList = lazy(() => import('~/views/song-list'))
 const Artist = lazy(() => import('~/views/artist'))
 const Album = lazy(() => import('~/views/album'))
-export const routes: RouteObject[] = [
+export const routes: RouteObject[] & any = [
   {
     path: '/',
     element: <Navigate to="/discover" />
@@ -20,6 +20,7 @@ export const routes: RouteObject[] = [
   {
     path: '/discover',
     element: <Discover />,
+    title: '发现音乐',
     children: [
       {
         path: '/discover',
@@ -27,32 +28,39 @@ export const routes: RouteObject[] = [
       },
       {
         path: '/discover/recommend',
-        element: <Recommend />
+        element: <Recommend />,
+        title: '推荐'
       },
       {
         path: '/discover/song-list',
-        element: <SongList />
+        element: <SongList />,
+        title: '歌单'
       },
       {
         path: '/discover/ranking',
-        element: <Ranking />
+        element: <Ranking />,
+        title: '排行榜'
       },
       {
         path: '/discover/album',
-        element: <Album />
+        element: <Album />,
+        title: '专辑'
       },
       {
         path: '/discover/artist',
-        element: <Artist />
+        element: <Artist />,
+        title: '歌手'
       }
     ]
   },
   {
     path: '/mine',
-    element: <Mine />
+    element: <Mine />,
+    title: '我的音乐'
   },
   {
     path: '/mv',
-    element: <Mv />
+    element: <Mv />,
+    title: 'Mv'
   }
 ]

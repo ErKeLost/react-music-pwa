@@ -6,18 +6,21 @@ import { Provider } from 'react-redux'
 import CssBaseline from '@mui/material/CssBaseline'
 import '@/assets/index.css'
 import store from '~/store'
+import ThemeProviderStyle from '@/theme/style-component'
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)
 
 function render(App: ComponentType) {
   root.render(
     <Provider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <CssBaseline />
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <ThemeProviderStyle>
+        <ThemeProvider>
+          <BrowserRouter>
+            <CssBaseline />
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </ThemeProviderStyle>
     </Provider>
   )
 }

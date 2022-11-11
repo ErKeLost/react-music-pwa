@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import './common.css';
 /* 样式的重置 */
 body,
 html,
@@ -39,7 +40,7 @@ a {
 
 a:hover {
   color: #666;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 i,
@@ -64,4 +65,8 @@ table {
 img {
   border: none;
   vertical-align: middle;
+}
+
+body {
+  trasitions: background-color 0.3 ease;
 }
