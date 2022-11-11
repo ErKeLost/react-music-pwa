@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import '@/assets/index.css'
 import store from '~/store'
 import ThemeProviderStyle from '@/theme/style-component'
+import { RootWrapper } from './theme/root-wrapper'
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)
 
@@ -14,12 +15,14 @@ function render(App: ComponentType) {
   root.render(
     <Provider store={store}>
       <ThemeProviderStyle>
-        <ThemeProvider>
-          <BrowserRouter>
-            <CssBaseline />
-            <App />
-          </BrowserRouter>
-        </ThemeProvider>
+        <RootWrapper>
+          <ThemeProvider>
+            <BrowserRouter>
+              <CssBaseline />
+              <App />
+            </BrowserRouter>
+          </ThemeProvider>
+        </RootWrapper>
       </ThemeProviderStyle>
     </Provider>
   )

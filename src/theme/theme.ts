@@ -43,6 +43,9 @@ const themes: Record<Themes, ThemeOptions> = {
         default: '#fafafa',
         paper: '#fff'
       },
+      color: {
+        default: '#000'
+      },
       primary: {
         main: '#3f51b5'
       }
@@ -56,8 +59,11 @@ const themes: Record<Themes, ThemeOptions> = {
         default: '#111',
         paper: '#171717'
       },
+      color: {
+        default: '#fff'
+      },
       primary: {
-        main: '#bfa'
+        main: '#fba'
       }
     }
   })

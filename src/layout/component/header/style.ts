@@ -3,7 +3,6 @@ export const HeaderWrapper = styled.div`
   height: 75px;
   background-color: ${(props) => props.theme.palette.background.default};
   font-size: 14px;
-  color: #fff;
 
   .content {
     display: flex;
@@ -76,8 +75,9 @@ export const HeaderRight = styled.div`
   align-items: center;
   color: #787878;
   font-size: 12px;
+
   .MuiInputBase-root {
-    border-radius:50px;
+    border-radius: 50px;
   }
   .login {
     margin-left: 20px;
