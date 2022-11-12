@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { fetchBannerDataAction } from '~/store/modules'
-
+import SwiperBanners from './cpns/swiper'
 interface IProps {
   children?: ReactNode
 }
@@ -11,7 +11,11 @@ const Recommend: FC<IProps> = () => {
   useEffect(() => {
     dispatch(fetchBannerDataAction())
   }, [])
-  return <div>Recommend</div>
+  return (
+    <div>
+      <SwiperBanners></SwiperBanners>
+    </div>
+  )
 }
 
 export default memo(Recommend)

@@ -1,12 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getBanners } from '~/services/modules/recommend'
-interface IRecommendState {}
+interface IRecommendState {
+  banners: []
+}
 
-export const fetchBannerDataAction = createAsyncThunk('banners', async () => {
-  const res = await getBanners()
-  console.log(res)
-  return res
-})
+export const fetchBannerDataAction = createAsyncThunk(
+  'banners',
+  async (args, { dispatch }) => {
+    const res = await getBanners()
+    dispatch(setBannerData(res.banners))
+  }
+)
 
 const initialState: IRecommendState = {
   banners: []
@@ -14,7 +18,11 @@ const initialState: IRecommendState = {
 const recommendSlice = createSlice({
   name: 'recommend',
   initialState,
-  reducers: {}
+  reducers: {
+    setBannerData(state, { payload }) {
+      state.banners = payload
+    }
+  }
 })
-
+export const { setBannerData } = recommendSlice.actions
 export default recommendSlice.reducer
