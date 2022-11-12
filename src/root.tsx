@@ -8,6 +8,7 @@ import '@/assets/index.css'
 import store from '~/store'
 import ThemeProviderStyle from '@/theme/style-component'
 import { RootWrapper } from './theme/root-wrapper'
+import SW from '@/components/pwa/SW'
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container)
 
@@ -19,6 +20,7 @@ function render(App: ComponentType) {
           <ThemeProvider>
             <BrowserRouter>
               <CssBaseline />
+              {/* <SW /> */}
               <App />
             </BrowserRouter>
           </ThemeProvider>

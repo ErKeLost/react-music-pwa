@@ -23,6 +23,7 @@ specifiers:
   eslint: ^8.24.0
   esno: ^0.16.3
   normalize.css: ^8.0.1
+  notistack: ^2.0.8
   nprogress: ^0.2.0
   prettier: ^2.7.1
   prop-types: ^15.8.1
@@ -51,6 +52,7 @@ dependencies:
   axios: 1.1.3
   classnames: 2.3.2
   normalize.css: 8.0.1
+  notistack: 2.0.8_yom4jwjumhd6cmuiogsnmvm6dm
   nprogress: 0.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -3793,6 +3795,29 @@ packages:
 
   /normalize.css/8.0.1:
     resolution: {integrity: sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==}
+    dev: false
+
+  /notistack/2.0.8_yom4jwjumhd6cmuiogsnmvm6dm:
+    resolution: {integrity: sha512-/IY14wkFp5qjPgKNvAdfL5Jp6q90+MjgKTPh4c81r/lW70KeuX6b9pE/4f8L4FG31cNudbN9siiFS5ql1aSLRw==}
+    peerDependencies:
+      '@emotion/react': ^11.4.1
+      '@emotion/styled': ^11.3.0
+      '@mui/material': ^5.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+    dependencies:
+      '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
+      '@emotion/styled': 11.10.5_otcjdfkheatawhug6fwk7ldzni
+      '@mui/material': 5.10.12_thp4wrxo45nyllusrnt46mid4u
+      clsx: 1.2.1
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /npm-run-path/4.0.1:
