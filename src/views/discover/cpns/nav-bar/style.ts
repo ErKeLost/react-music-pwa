@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const NavWrapper = styled.div`
-  height: 30px;
+  height: 36px;
   background-color: ${(props) => props.theme.palette.primary.main};
   .nav {
     display: flex;

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const SwiperWrapper = styled.div`
+  background-color: red;
   .banner {
     height: 270px;
     position: relative;
@@ -16,12 +17,14 @@ export const SwiperWrapperLeft = styled.div`
   }
   img {
     height: 270px;
+    /* width: 970px; */
+    /* object-fit: cover; */
   }
 `
 export const SwiperWrapperRight = styled.div`
   width: 250px;
   height: 100%;
-  background-color: #fba;
+  /* background-color: #fba; */
   position: absolute;
   right: 0;
   top: 0;
@@ -43,4 +46,3 @@ export const SwiperWrapperControl = styled.div`
     right: -85px;
   }
 `
-

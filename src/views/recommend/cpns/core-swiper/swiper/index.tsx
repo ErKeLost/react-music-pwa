@@ -13,19 +13,30 @@ import 'swiper/css'
 import ArrowLeft from '~/components/Icon/arrow-left'
 import ArrowRight from '~/components/Icon/arrow-right'
 import { Autoplay, Navigation } from 'swiper'
+import User from '../user'
 interface IProps {
   children?: ReactNode
 }
 
 const SwiperBanners: FC<IProps> = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
   const { banners } = useMusicSelector(
     (state: any) => ({
       banners: state.recommend.banners
     }),
     shallowEqualMusic
   )
+  function handleSwiperChange(item) {
+    console.log(item.realIndex)
+    setCurrentIndex(item.realIndex)
+  }
+  /** 获取背景图片 */
+  let bannerImage = banners?.[currentIndex]?.imageUrl
+  if (bannerImage) bannerImage = `${bannerImage}?imageView&blur=40x20`
   return (
-    <SwiperWrapper>
+    <SwiperWrapper style={{
+      background: `url(${bannerImage}) center center / 6000px`
+    }}>
       <div className="banner wrap-v2">
         <SwiperWrapperLeft>
           <Swiper
@@ -45,8 +56,8 @@ const SwiperBanners: FC<IProps> = () => {
               nextEl: '.right',
               prevEl: '.left'
             }}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={(e) => handleSwiperChange(e)}
+            // onSwiper={(swiper) => console.log(swiper)}
           >
             {banners.map((item, index) => {
               return (
@@ -59,7 +70,9 @@ const SwiperBanners: FC<IProps> = () => {
             })}
           </Swiper>
         </SwiperWrapperLeft>
-        <SwiperWrapperRight />
+        <SwiperWrapperRight>
+          <User />
+        </SwiperWrapperRight>
         <SwiperWrapperControl>
           <ArrowLeft className="left" />
           <ArrowRight className="right" />

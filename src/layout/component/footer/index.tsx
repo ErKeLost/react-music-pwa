@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Footer: FC<IProps> = () => {
-  return <div>Footer</div>
+  // return <div>Footer</div>
 }
 
 export default memo(Footer)
