@@ -17,7 +17,6 @@ const Header: FC<IProps> = () => {
     dispatch(changeTheme())
   }
   const one = routes.filter((item) => item.path !== '/')
-  console.log(one)
 
   return (
     <HeaderWrapper>
@@ -38,6 +37,7 @@ const Header: FC<IProps> = () => {
                     }}
                   >
                     {title}
+                    <i className='icon sprite_01'></i>
                   </NavLink>
                 </div>
               ))}
@@ -61,9 +61,9 @@ const Header: FC<IProps> = () => {
       </div>
 
       <div className="divider"></div>
-      <Button onClick={handleTheme} variant="contained">
+      {/* <Button onClick={handleTheme} variant="contained">
         Contained
-      </Button>
+      </Button> */}
     </HeaderWrapper>
   )
 }

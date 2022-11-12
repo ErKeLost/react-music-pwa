@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-console.log(import.meta)
 
 export const HeaderWrapper = styled.div`
   height: 75px;

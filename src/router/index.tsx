@@ -37,11 +37,6 @@ export const routes: RouteObject[] & any = [
         title: '歌单'
       },
       {
-        path: '/discover/ranking',
-        element: <Ranking />,
-        title: '排行榜'
-      },
-      {
         path: '/discover/album',
         element: <Album />,
         title: '专辑'
@@ -54,13 +49,18 @@ export const routes: RouteObject[] & any = [
     ]
   },
   {
-    path: '/mine',
-    element: <Mine />,
-    title: '我的音乐'
+    path: '/ranking',
+    element: <Ranking />,
+    title: '排行榜'
   },
   {
     path: '/mv',
     element: <Mv />,
     title: 'Mv排行'
+  },
+  {
+    path: '/mine',
+    element: <Mine />,
+    title: '我的音乐'
   }
 ]
