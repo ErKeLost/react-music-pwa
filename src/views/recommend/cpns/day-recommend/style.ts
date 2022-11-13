@@ -13,7 +13,7 @@ export const DayCommendWrapper = styled.div`
   .swiper {
     margin: 0;
     width: 340px;
-    height: 320px;
+    height: 150px;
   }
 
   .swiper-slide {

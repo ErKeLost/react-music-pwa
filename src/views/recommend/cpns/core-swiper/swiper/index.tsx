@@ -27,7 +27,6 @@ const SwiperBanners: FC<IProps> = () => {
     shallowEqualMusic
   )
   function handleSwiperChange(item) {
-    console.log(item.realIndex)
     setCurrentIndex(item.realIndex)
   }
   /** 获取背景图片 */

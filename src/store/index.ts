@@ -7,10 +7,12 @@ import {
 } from 'react-redux'
 import themeReducer from './modules/theme'
 import recommendReducer from './modules/recommend'
+import loginReducer from './modules/login'
 const store = configureStore({
   reducer: {
     theme: themeReducer,
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    login: loginReducer
   }
 })
 
