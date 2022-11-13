@@ -1,13 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getQrCode, getQrBaseImg } from '~/services/modules/login'
+import {
+  getQrCode,
+  getQrBaseImg,
+  getQrPoiling,
+  getUserInfo,
+  getUserData
+} from '~/services/modules/login'
 interface ILoginState {
   qrCode: string
   codeInfo: any
+  poilingData: any
+  userInfo: any
 }
 
 const initialState: ILoginState = {
   qrCode: '',
-  codeInfo: {}
+  codeInfo: {},
+  poilingData: {},
+  userInfo: {}
 }
 const loginSlice = createSlice({
   name: 'login',
@@ -17,8 +27,13 @@ const loginSlice = createSlice({
       state.qrCode = payload
     },
     setQrCodeInfoData(state, { payload }) {
-      console.log(payload)
       state.codeInfo = payload
+    },
+    setQrPoilingData(state, { payload }) {
+      state.poilingData = payload
+    },
+    setUserInfo(state, { payload }) {
+      state.userInfo = payload
     }
   }
 })
@@ -31,10 +46,22 @@ export const fetchLoginDataAction = createAsyncThunk(
       key: res.data.unikey,
       qrimg: res.data.unikey
     })
-    console.log(result)
     dispatch(setQrCodeInfoData(result))
+    dispatch(fetchPoilingQrAction())
+  }
+)
+export const fetchPoilingQrAction = createAsyncThunk(
+  'poiling',
+  async (args, { getState, dispatch }) => {
+    const state = getState()
+    const res = await getQrPoiling({ key: state.login.qrCode })
+    const info = await getUserInfo()
+    console.log(info)
+    const a = await getUserData({ uid: info.account.id })
+    console.log(a)
   }
 )
 
-export const { setQrCodeData, setQrCodeInfoData } = loginSlice.actions
+export const { setQrCodeData, setQrCodeInfoData, setQrPoilingData } =
+  loginSlice.actions
 export default loginSlice.reducer

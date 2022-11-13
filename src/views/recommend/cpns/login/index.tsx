@@ -8,10 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide'
 import { TransitionProps } from '@mui/material/transitions'
 import { ReactNode } from 'react'
-import { fetchLoginDataAction } from '@/store/modules'
+import { fetchLoginDataAction, fetchPoilingQrAction } from '@/store/modules'
 import { DialogWrapper, LoginDialogWrapper } from './style'
 import Divider from '@mui/material/Divider'
-import { Box, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -39,7 +39,9 @@ export default function AlertDialogSlide(props: IProps) {
     }),
     shallowEqualMusic
   )
-  console.log(codeInfo)
+  function source() {
+    dispatch(fetchPoilingQrAction())
+  }
   return (
     <DialogWrapper>
       <Dialog
@@ -77,7 +79,7 @@ export default function AlertDialogSlide(props: IProps) {
                   variant="outlined"
                   size="small"
                 />
-                <Button variant="contained" fullWidth>
+                <Button variant="contained" onClick={source} fullWidth>
                   登录
                 </Button>
               </div>
