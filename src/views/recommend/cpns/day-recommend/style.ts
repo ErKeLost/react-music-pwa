@@ -10,4 +10,19 @@ export const DayCommendWrapper = styled.div`
   .MuiCardContent-root {
     padding-top: 12px;
   }
+  .swiper {
+    margin: 0;
+    width: 340px;
+    height: 320px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
 `

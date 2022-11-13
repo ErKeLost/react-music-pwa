@@ -5,7 +5,7 @@ export default function MajesticonsCommentTextLine(props: SVGProps<SVGSVGElement
     <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>
       <path
         fill="none"
-        stroke="#888888"
+        stroke="#fff"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"

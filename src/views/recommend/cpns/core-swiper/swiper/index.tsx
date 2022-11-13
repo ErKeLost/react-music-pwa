@@ -34,9 +34,11 @@ const SwiperBanners: FC<IProps> = () => {
   let bannerImage = banners?.[currentIndex]?.imageUrl
   if (bannerImage) bannerImage = `${bannerImage}?imageView&blur=40x20`
   return (
-    <SwiperWrapper style={{
-      background: `url(${bannerImage}) center center / 6000px`
-    }}>
+    <SwiperWrapper
+      style={{
+        background: `url(${bannerImage}) center center / 6000px`
+      }}
+    >
       <div className="banner wrap-v2">
         <SwiperWrapperLeft>
           <Swiper
@@ -61,9 +63,9 @@ const SwiperBanners: FC<IProps> = () => {
           >
             {banners.map((item, index) => {
               return (
-                <div className="banner-item" key={item.encodeId}>
-                  <SwiperSlide key={item.encodeId} className="image">
-                    <img key={item.encodeId} src={item.imageUrl} />
+                <div className="banner-item" key={index}>
+                  <SwiperSlide key={index} className="image">
+                    <img key={index} src={item.imageUrl} />
                   </SwiperSlide>
                 </div>
               )
