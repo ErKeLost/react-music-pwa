@@ -3,6 +3,7 @@ import Request from './request'
 const request = new Request({
   // baseURL: import.meta.env.VITE_APP_BASE_URL,
   baseURL: 'https://music-erkelost.vercel.app/',
+  withCredentials: true,
   timeout: 60000,
   interceptors: {
     requestInterceptor: (config: any) => {

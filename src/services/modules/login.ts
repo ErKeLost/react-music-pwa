@@ -26,14 +26,14 @@ export function getUserInfo() {
   })
 }
 
-// export function getUserData(params: any) {
-//   return request.get({
-//     url: '/user/detail',
-//     params
-//   })
-// }
-export function getUserData() {
+export function getUserData(params: any) {
   return request.get({
-    url: '/user/subcount'
+    url: '/user/detail',
+    params
   })
 }
+// export function getUserData() {
+//   return request.get({
+//     url: '/user/subcount'
+//   })
+// }

@@ -57,7 +57,7 @@ export const fetchPoilingQrAction = createAsyncThunk(
     const res = await getQrPoiling({ key: state.login.qrCode })
     const info = await getUserInfo()
     console.log(info)
-    const a = await getUserData({ uid: info.account.id })
+    // const a = await getUserData({ uid: info.account.id, cookie:  })
     console.log(a)
   }
 )
