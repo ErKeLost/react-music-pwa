@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide'
 import { TransitionProps } from '@mui/material/transitions'
 import { ReactNode } from 'react'
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
 import {
   fetchLoginDataAction,
   fetchQrImgAction,
@@ -40,7 +41,19 @@ export default function AlertDialogSlide(props: IProps) {
     // dispatch(fetchQrImgAction())
     // return () => {}
   }, [])
+  const [state, setState] = React.useState<State>({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center'
+  })
+  const { vertical, horizontal, open } = state
 
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ open: true, ...newState })
+  }
+  const handleCloseClick = () => {
+    setState({ ...state, open: false })
+  }
   const { codeInfo, loginSuccess, poilingData } = useMusicSelector(
     (state: any) => ({
       codeInfo: state.login.codeInfo,
@@ -53,6 +66,11 @@ export default function AlertDialogSlide(props: IProps) {
     if (loginSuccess) {
       clearInterval(interval.current)
       console.log('login success 在watch effect 中执行了', loginSuccess)
+      handleClick({
+        vertical: 'top',
+        horizontal: 'center'
+      })
+      handleClose()
     } else {
       checkQrStatus()
     }
@@ -130,6 +148,13 @@ export default function AlertDialogSlide(props: IProps) {
           <div className="other"></div>
         </LoginDialogWrapper>
       </Dialog>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleCloseClick}
+        message="登录成功"
+        key={vertical + horizontal}
+      />
     </DialogWrapper>
   )
 }
