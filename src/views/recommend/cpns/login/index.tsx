@@ -8,11 +8,15 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide'
 import { TransitionProps } from '@mui/material/transitions'
 import { ReactNode } from 'react'
-import { fetchLoginDataAction, fetchPoilingQrAction } from '@/store/modules'
+import {
+  fetchLoginDataAction,
+  fetchQrImgAction,
+  fetchPoilingQrAction
+} from '@/store/modules'
 import { DialogWrapper, LoginDialogWrapper } from './style'
 import Divider from '@mui/material/Divider'
 import { TextField } from '@mui/material'
-
+// TODO: 登录整体二维码逻辑
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<any, any>
@@ -30,18 +34,39 @@ interface IProps {
 export default function AlertDialogSlide(props: IProps) {
   const { loginDialog, handleClose } = props
   const dispatch = useMusicDispatch()
+  let interval: any = useRef(null)
   useEffect(() => {
     dispatch(fetchLoginDataAction())
+    // dispatch(fetchQrImgAction())
+    // return () => {}
   }, [])
-  const { codeInfo } = useMusicSelector(
+
+  const { codeInfo, loginSuccess, poilingData } = useMusicSelector(
     (state: any) => ({
-      codeInfo: state.login.codeInfo
+      codeInfo: state.login.codeInfo,
+      loginSuccess: state.login.loginSuccess,
+      poilingData: state.login.poilingData
     }),
     shallowEqualMusic
   )
+  useEffect(() => {
+    if (loginSuccess) {
+      clearInterval(interval.current)
+      console.log('login success 在watch effect 中执行了', loginSuccess)
+    } else {
+      checkQrStatus()
+    }
+  }, [loginSuccess])
+  function checkQrStatus() {
+    clearInterval(interval.current)
+    interval.current = setInterval(async () => {
+      dispatch(fetchPoilingQrAction())
+    }, 2000)
+  }
   function source() {
     dispatch(fetchPoilingQrAction())
   }
+
   return (
     <DialogWrapper>
       <Dialog

@@ -22,6 +22,7 @@ specifiers:
   cross-env: ^7.0.3
   eslint: ^8.24.0
   esno: ^0.16.3
+  js-cookie: ^3.0.1
   normalize.css: ^8.0.1
   notistack: ^2.0.8
   nprogress: ^0.2.0
@@ -51,6 +52,7 @@ dependencies:
   animate.css: 4.1.1
   axios: 1.1.3
   classnames: 2.3.2
+  js-cookie: 3.0.1
   normalize.css: 8.0.1
   notistack: 2.0.8_yom4jwjumhd6cmuiogsnmvm6dm
   nprogress: 0.2.0
@@ -3552,6 +3554,11 @@ packages:
 
   /js-cookie/2.2.1:
     resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==}
+    dev: false
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
     dev: false
 
   /js-sdsl/4.1.5:
