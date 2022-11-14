@@ -12,3 +12,4 @@ export function promise(callback: any): Promise<void> {
 export function promiseAllSettled(arr: any[]) {
   return Promise.allSettled(arr)
 }
+export * from './common'

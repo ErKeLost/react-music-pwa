@@ -7,7 +7,7 @@ import LightNing from '@/components/Icon/lightning'
 import Comment from '@/components/Icon/comment'
 import Time from '@/components/Icon/time'
 import Login from '../../login'
-import { userInfo } from 'os'
+import { nullObj } from '~/utils'
 interface IProps {
   children?: ReactNode
 }
@@ -45,7 +45,7 @@ const User: FC<IProps> = () => {
   )
   return (
     <UserWrapper>
-      {userInfo.name ? (
+      {nullObj(userInfo) ? (
         '我登录了'
       ) : (
         <div>

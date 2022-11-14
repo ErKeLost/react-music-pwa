@@ -19,6 +19,7 @@ import { DialogWrapper, LoginDialogWrapper } from './style'
 import Divider from '@mui/material/Divider'
 import { TextField } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
+import { nullObj } from '~/utils'
 // TODO: 登录整体二维码逻辑
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -93,7 +94,7 @@ export default function AlertDialogSlide(props: IProps) {
               <span>扫描二维码登录</span>
               <div className="code">
                 <img src={codeInfo.data?.qrimg} alt="" />
-                {poilingData.avatarUrl ? (
+                {nullObj(poilingData) ? (
                   <div className="codeDrop">
                     <Avatar
                       className="avatar"

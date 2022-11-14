@@ -8,6 +8,7 @@ import { HeaderLeft, HeaderRight, HeaderWrapper } from './style'
 import { routes } from '@/router'
 import { Avatar, TextField } from '@mui/material'
 import MdiAccount from '~/components/Icon/account'
+import { nullObj } from '~/utils'
 interface IProps {
   children?: ReactNode
 }
@@ -24,7 +25,7 @@ const Header: FC<IProps> = () => {
     }),
     shallowEqualMusic
   )
-  console.log('有一次刷新了 头像');
+  console.log('有一次刷新了 头像')
 
   return (
     <HeaderWrapper>
@@ -64,7 +65,7 @@ const Header: FC<IProps> = () => {
           </div>
           <span className="login">
             <Avatar>
-              {poilingData.avatarUrl ? (
+              {nullObj(poilingData) ? (
                 <img src={poilingData.avatarUrl} alt="" />
               ) : (
                 <MdiAccount />
