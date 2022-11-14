@@ -6,17 +6,19 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide'
+import Avatar from '@mui/material/Avatar'
 import { TransitionProps } from '@mui/material/transitions'
 import { ReactNode } from 'react'
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar'
 import {
   fetchLoginDataAction,
   fetchQrImgAction,
-  fetchPoilingQrAction
+  fetchPoilingQrAction,
+  setQrPoilingInfo
 } from '@/store/modules'
 import { DialogWrapper, LoginDialogWrapper } from './style'
 import Divider from '@mui/material/Divider'
 import { TextField } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
 // TODO: 登录整体二维码逻辑
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -41,24 +43,12 @@ export default function AlertDialogSlide(props: IProps) {
     // dispatch(fetchQrImgAction())
     // return () => {}
   }, [])
-  const [state, setState] = React.useState<State>({
-    open: false,
-    vertical: 'top',
-    horizontal: 'center'
-  })
-  const { vertical, horizontal, open } = state
-
-  const handleClick = (newState: SnackbarOrigin) => () => {
-    setState({ open: true, ...newState })
-  }
-  const handleCloseClick = () => {
-    setState({ ...state, open: false })
-  }
-  const { codeInfo, loginSuccess, poilingData } = useMusicSelector(
+  const { codeInfo, loginSuccess, poilingData, poilingInfo } = useMusicSelector(
     (state: any) => ({
       codeInfo: state.login.codeInfo,
       loginSuccess: state.login.loginSuccess,
-      poilingData: state.login.poilingData
+      poilingData: state.login.poilingData,
+      poilingInfo: state.login.poilingInfo
     }),
     shallowEqualMusic
   )
@@ -66,15 +56,18 @@ export default function AlertDialogSlide(props: IProps) {
     if (loginSuccess) {
       clearInterval(interval.current)
       console.log('login success 在watch effect 中执行了', loginSuccess)
-      handleClick({
-        vertical: 'top',
-        horizontal: 'center'
-      })
       handleClose()
-    } else {
-      checkQrStatus()
     }
   }, [loginSuccess])
+  useEffect(() => {
+    if (loginDialog) {
+      checkQrStatus()
+    } else {
+      clearInterval(interval.current)
+      console.log('关闭dialog了啊')
+      dispatch(setQrPoilingInfo('扫码登录或扫码下载APP'))
+    }
+  }, [loginDialog])
   function checkQrStatus() {
     clearInterval(interval.current)
     interval.current = setInterval(async () => {
@@ -84,7 +77,6 @@ export default function AlertDialogSlide(props: IProps) {
   function source() {
     dispatch(fetchPoilingQrAction())
   }
-
   return (
     <DialogWrapper>
       <Dialog
@@ -99,8 +91,28 @@ export default function AlertDialogSlide(props: IProps) {
           <div className="top-container">
             <div className="left">
               <span>扫描二维码登录</span>
-              <img src={codeInfo.data?.qrimg} alt="" />
-              <span>扫码登录或扫码下载APP</span>
+              <div className="code">
+                <img src={codeInfo.data?.qrimg} alt="" />
+                {poilingData.avatarUrl ? (
+                  <div className="codeDrop">
+                    <Avatar
+                      className="avatar"
+                      src={poilingData.avatarUrl}
+                      sx={{ width: 86, height: 86 }}
+                    />
+                    <CircularProgress
+                      size={100}
+                      sx={{
+                        position: 'absolute',
+                        top: 40,
+                        left: 40,
+                        zIndex: 1
+                      }}
+                    />
+                  </div>
+                ) : null}
+              </div>
+              <span>{poilingInfo}</span>
             </div>
             <Divider orientation="vertical" flexItem></Divider>
             <div className="right">
@@ -148,13 +160,6 @@ export default function AlertDialogSlide(props: IProps) {
           <div className="other"></div>
         </LoginDialogWrapper>
       </Dialog>
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        onClose={handleCloseClick}
-        message="登录成功"
-        key={vertical + horizontal}
-      />
     </DialogWrapper>
   )
 }

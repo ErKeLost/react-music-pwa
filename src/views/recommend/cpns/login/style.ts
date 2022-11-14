@@ -24,6 +24,22 @@ export const LoginDialogWrapper = styled.div`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  .code {
+    position: relative;
+    .codeDrop {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #00000040;
+      .avatar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
   .other {
     height: 30px;
     width: 100%;

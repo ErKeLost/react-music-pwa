@@ -6,7 +6,8 @@ import { changeTheme } from '@/store/modules/theme'
 import Button from '@mui/material/Button'
 import { HeaderLeft, HeaderRight, HeaderWrapper } from './style'
 import { routes } from '@/router'
-import { TextField } from '@mui/material'
+import { Avatar, TextField } from '@mui/material'
+import MdiAccount from '~/components/Icon/account'
 interface IProps {
   children?: ReactNode
 }
@@ -17,6 +18,13 @@ const Header: FC<IProps> = () => {
     dispatch(changeTheme())
   }
   const one = routes.filter((item) => item.path !== '/')
+  const { poilingData } = useMusicSelector(
+    (state: any) => ({
+      poilingData: state.login.poilingData
+    }),
+    shallowEqualMusic
+  )
+  console.log('有一次刷新了 头像');
 
   return (
     <HeaderWrapper>
@@ -37,7 +45,7 @@ const Header: FC<IProps> = () => {
                     }}
                   >
                     {title}
-                    <i className='icon sprite_01'></i>
+                    <i className="icon sprite_01"></i>
                   </NavLink>
                 </div>
               ))}
@@ -55,7 +63,13 @@ const Header: FC<IProps> = () => {
             />
           </div>
           <span className="login">
-            <Button variant="contained">登录</Button>
+            <Avatar>
+              {poilingData.avatarUrl ? (
+                <img src={poilingData.avatarUrl} alt="" />
+              ) : (
+                <MdiAccount />
+              )}
+            </Avatar>
           </span>
         </HeaderRight>
       </div>

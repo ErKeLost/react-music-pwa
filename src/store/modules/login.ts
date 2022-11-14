@@ -12,6 +12,7 @@ interface ILoginState {
   codeInfo: any
   poilingData: any
   loginSuccess: boolean
+  poilingInfo: string
   userInfo: any
 }
 
@@ -20,6 +21,7 @@ const initialState: ILoginState = {
   codeInfo: {},
   poilingData: {},
   loginSuccess: false,
+  poilingInfo: '扫码登录或扫码下载APP',
   userInfo: {}
 }
 const loginSlice = createSlice({
@@ -35,6 +37,10 @@ const loginSlice = createSlice({
     setQrPoilingData(state, { payload }) {
       console.log(payload)
       state.poilingData = payload
+    },
+    setQrPoilingInfo(state, { payload }) {
+      console.log(payload)
+      state.poilingInfo = payload
     },
     setLoginSuccess(state, { payload }) {
       console.log(payload)
@@ -73,12 +79,24 @@ export const fetchPoilingQrAction = createAsyncThunk(
     const state = getState()
     const res = await getQrPoiling({ key: state.login.qrCode })
     console.log(res)
-    if (res.code === 803) {
+    if (res.code === 800) {
+      dispatch(setQrPoilingInfo('登录取消'))
       dispatch(setLoginSuccess(true))
+    }
+    if (res.code === 802) {
       dispatch(setQrPoilingData(res))
+      dispatch(setQrPoilingInfo('扫描成功, 请在手机上登录确认'))
+    }
+    if (res.code === 803) {
+      dispatch(setQrPoilingInfo('登录成功'))
+      dispatch(setQrPoilingData({}))
+      setTimeout(() => {
+        dispatch(setLoginSuccess(true))
+      }, 500)
       setCookies(res.cookie)
       const info = await getUserInfo()
       console.log(info)
+      dispatch(setUserInfo(info))
     }
   }
 )
@@ -87,6 +105,8 @@ export const {
   setQrCodeData,
   setQrCodeInfoData,
   setLoginSuccess,
-  setQrPoilingData
+  setQrPoilingData,
+  setQrPoilingInfo,
+  setUserInfo
 } = loginSlice.actions
 export default loginSlice.reducer
