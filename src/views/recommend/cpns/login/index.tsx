@@ -98,7 +98,7 @@ export default function AlertDialogSlide(props: IProps) {
                   <div className="codeDrop">
                     <Avatar
                       className="avatar"
-                      src={poilingData.avatarUrl}
+                      src={poilingData?.avatarUrl}
                       sx={{ width: 86, height: 86 }}
                     />
                     <CircularProgress

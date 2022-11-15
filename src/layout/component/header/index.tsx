@@ -68,7 +68,7 @@ const Header: FC<IProps> = () => {
               {nullObj(userInfo) ? (
                 <img
                   style={{ width: '40px', height: '40px' }}
-                  src={userInfo.profile.avatarUrl}
+                  src={userInfo?.profile?.avatarUrl}
                   alt=""
                 />
               ) : (

@@ -7,6 +7,7 @@ import {
   getUserSubInfo,
   getUserLevel
 } from '~/services/modules/login'
+import { getUserFans, getUserFollower } from '~/services/modules/user'
 import { setCookies } from '~/utils/fetch/auth'
 interface ILoginState {
   qrCode: string
@@ -15,6 +16,8 @@ interface ILoginState {
   loginSuccess: boolean
   poilingInfo: string
   userInfo: any
+  userFans: any
+  skeletonFlag: boolean
 }
 
 const initialState: ILoginState = {
@@ -24,7 +27,11 @@ const initialState: ILoginState = {
   loginSuccess: false,
   poilingInfo: '扫码登录或扫码下载APP',
   // @ts-ignore
-  userInfo: JSON.parse(localStorage.getItem('userInfo')) ?? {}
+  userInfo: JSON.parse(localStorage.getItem('userInfo')) ?? {},
+  // @ts-ignore
+  userFans: JSON.parse(localStorage.getItem('userFans')) ?? {},
+  // @ts-ignore
+  skeletonFlag: !!JSON.parse(localStorage.getItem('userFans')) ?? false
 }
 const loginSlice = createSlice({
   name: 'login',
@@ -51,6 +58,13 @@ const loginSlice = createSlice({
     setUserInfo(state, { payload }) {
       console.log(payload)
       state.userInfo = payload
+    },
+    setUserFans(state, { payload }) {
+      console.log(payload)
+      state.userFans = payload
+    },
+    setSkeletonFlag(state, { payload }) {
+      state.skeletonFlag = payload
     }
   }
 })
@@ -93,6 +107,7 @@ export const fetchPoilingQrAction = createAsyncThunk(
     if (res.code === 803) {
       dispatch(setQrPoilingInfo('登录成功'))
       dispatch(setQrPoilingData({}))
+      dispatch(setSkeletonFlag(true))
       setTimeout(() => {
         dispatch(setLoginSuccess(true))
       }, 500)
@@ -107,8 +122,18 @@ export const fetchPoilingQrAction = createAsyncThunk(
       result.forEach((item) => {
         Object.assign(info, item)
       })
-      localStorage.setItem('userInfo', JSON.stringify(info))
       dispatch(setUserInfo(info))
+      localStorage.setItem('userInfo', JSON.stringify(info))
+      const userFan = await Promise.all([
+        getUserFans(info.profile!.userId),
+        getUserFollower(info.profile!.userId)
+      ])
+      dispatch(setSkeletonFlag(true))
+      let userFans: any = {}
+      userFans.follow = userFan[0]
+      userFans.followed = userFan[1]
+      dispatch(setUserFans(userFans))
+      localStorage.setItem('userFans', JSON.stringify(userFans))
     }
   }
 )
@@ -119,6 +144,8 @@ export const {
   setLoginSuccess,
   setQrPoilingData,
   setQrPoilingInfo,
-  setUserInfo
+  setUserInfo,
+  setSkeletonFlag,
+  setUserFans
 } = loginSlice.actions
 export default loginSlice.reducer

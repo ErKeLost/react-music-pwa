@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
-import { UserWrapper } from './style'
-import { Avatar, Button, IconButton } from '@mui/material'
+import { UserWrapper, UserInfoWrapper, SkeletonWrapper } from './style'
+import { Avatar, Button, IconButton, Skeleton } from '@mui/material'
 import HD from '@/components/Icon/hd'
 import LightNing from '@/components/Icon/lightning'
 import Comment from '@/components/Icon/comment'
@@ -37,27 +37,19 @@ const User: FC<IProps> = () => {
   function handleClose() {
     setLoginDialog(!loginDialog)
   }
-  const { userInfo } = useMusicSelector(
+  const { userInfo, skeletonFlag } = useMusicSelector(
     (state: any) => ({
-      userInfo: state.login.userInfo
+      userInfo: state.login.userInfo,
+      skeletonFlag: state.login.skeletonFlag
     }),
     shallowEqualMusic
   )
+  console.log()
+
   return (
     <UserWrapper>
-      {nullObj(userInfo) ? (
-        <div>
-          <Avatar
-            src={userInfo.profile.avatarUrl}
-            sx={{ width: 106, height: 106 }}
-          />
-          <span>{userInfo.profile.nickname}</span>
-          <div>
-            <div>
-              <span>{userInfo.data.level}</span>
-            </div>
-          </div>
-        </div>
+      {nullObj(userInfo) || skeletonFlag ? (
+        <div>{skeletonFlag ? <UserInfoFn /> : <SkeletonFn />}</div>
       ) : (
         <div>
           <div>登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</div>
@@ -78,6 +70,49 @@ const User: FC<IProps> = () => {
         </div>
       )}
     </UserWrapper>
+  )
+}
+
+export function UserInfoFn(props) {
+  const { userInfo, userFans } = useMusicSelector(
+    (state: any) => ({
+      userInfo: state.login.userInfo,
+      userFans: state.login.userFans
+    }),
+    shallowEqualMusic
+  )
+  return (
+    <UserInfoWrapper>
+      <Avatar
+        className="avatar"
+        src={userInfo?.profile?.avatarUrl}
+        sx={{ width: 106, height: 106 }}
+      />
+      <span className="nickname">{userInfo.profile.nickname}</span>
+      <div className="other">
+        <div>
+          <span>{userFans?.followed?.follow.length}</span>
+          <span>关注</span>
+        </div>
+        <div>
+          <span>{userFans?.follow?.size}</span>
+          <span>粉丝</span>
+        </div>
+        <div>
+          <span> Lv{userInfo?.data?.level}</span>
+          <span>等级</span>
+        </div>
+      </div>
+    </UserInfoWrapper>
+  )
+}
+export function SkeletonFn(props) {
+  return (
+    <SkeletonWrapper>
+      <Skeleton variant="circular" width={90} height={90} />
+      <Skeleton variant="rectangular" width={150} height={30} />
+      <Skeleton variant="rounded" width={150} height={30} />
+    </SkeletonWrapper>
   )
 }
 

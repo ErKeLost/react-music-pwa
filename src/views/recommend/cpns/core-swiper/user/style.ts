@@ -16,3 +16,38 @@ export const UserWrapper = styled.div`
     align-items: center;
   }
 `
+
+export const SkeletonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+`
+
+export const UserInfoWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  user-select: none;
+  .avatar {
+    border: 5px solid #eee;
+  }
+  .nickname {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .other {
+    display: flex;
+    gap: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+`
