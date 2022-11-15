@@ -23,7 +23,8 @@ const initialState: ILoginState = {
   poilingData: {},
   loginSuccess: false,
   poilingInfo: '扫码登录或扫码下载APP',
-  userInfo: {}
+  // @ts-ignore
+  userInfo: JSON.parse(localStorage.getItem('userInfo')) ?? {}
 }
 const loginSlice = createSlice({
   name: 'login',
@@ -106,7 +107,7 @@ export const fetchPoilingQrAction = createAsyncThunk(
       result.forEach((item) => {
         Object.assign(info, item)
       })
-      console.log(info)
+      localStorage.setItem('userInfo', JSON.stringify(info))
       dispatch(setUserInfo(info))
     }
   }

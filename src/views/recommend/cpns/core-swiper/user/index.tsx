@@ -52,6 +52,11 @@ const User: FC<IProps> = () => {
             sx={{ width: 106, height: 106 }}
           />
           <span>{userInfo.profile.nickname}</span>
+          <div>
+            <div>
+              <span>{userInfo.data.level}</span>
+            </div>
+          </div>
         </div>
       ) : (
         <div>
