@@ -1,6 +1,6 @@
 import request from '@/services'
 
-function now () {
+function now() {
   return new Date().getTime()
 }
 export function getQrCode() {
@@ -26,5 +26,17 @@ export function getQrPoiling(params: any) {
 export function getUserInfo() {
   return request.get({
     url: `/user/account?timestamp=${now()}`
+  })
+}
+
+export function getUserSubInfo() {
+  return request.get({
+    url: `/user/subcount?timestamp=${now()}`
+  })
+}
+
+export function getUserLevel() {
+  return request.get({
+    url: `/user/level?timestamp=${now()}`
   })
 }

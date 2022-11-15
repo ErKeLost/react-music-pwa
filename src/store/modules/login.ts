@@ -4,7 +4,8 @@ import {
   getQrBaseImg,
   getQrPoiling,
   getUserInfo,
-  getUserData
+  getUserSubInfo,
+  getUserLevel
 } from '~/services/modules/login'
 import { setCookies } from '~/utils/fetch/auth'
 interface ILoginState {
@@ -47,6 +48,7 @@ const loginSlice = createSlice({
       state.loginSuccess = payload
     },
     setUserInfo(state, { payload }) {
+      console.log(payload)
       state.userInfo = payload
     }
   }
@@ -94,7 +96,16 @@ export const fetchPoilingQrAction = createAsyncThunk(
         dispatch(setLoginSuccess(true))
       }, 500)
       setCookies(res.cookie)
-      const info = await getUserInfo()
+      // const result = await userInfoPromise()
+      let info = {}
+      const result = await Promise.all([
+        getUserInfo(),
+        getUserSubInfo(),
+        getUserLevel()
+      ])
+      result.forEach((item) => {
+        Object.assign(info, item)
+      })
       console.log(info)
       dispatch(setUserInfo(info))
     }

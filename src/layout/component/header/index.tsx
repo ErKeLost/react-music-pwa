@@ -19,9 +19,9 @@ const Header: FC<IProps> = () => {
     dispatch(changeTheme())
   }
   const one = routes.filter((item) => item.path !== '/')
-  const { poilingData } = useMusicSelector(
+  const { userInfo } = useMusicSelector(
     (state: any) => ({
-      poilingData: state.login.poilingData
+      userInfo: state.login.userInfo
     }),
     shallowEqualMusic
   )
@@ -65,8 +65,12 @@ const Header: FC<IProps> = () => {
           </div>
           <span className="login">
             <Avatar>
-              {nullObj(poilingData) ? (
-                <img src={poilingData.avatarUrl} alt="" />
+              {nullObj(userInfo) ? (
+                <img
+                  style={{ width: '40px', height: '40px' }}
+                  src={userInfo.profile.avatarUrl}
+                  alt=""
+                />
               ) : (
                 <MdiAccount />
               )}

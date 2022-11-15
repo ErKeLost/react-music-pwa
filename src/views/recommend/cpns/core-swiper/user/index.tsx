@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import type { FC, ReactNode } from 'react'
 import { UserWrapper } from './style'
-import { Button, IconButton } from '@mui/material'
+import { Avatar, Button, IconButton } from '@mui/material'
 import HD from '@/components/Icon/hd'
 import LightNing from '@/components/Icon/lightning'
 import Comment from '@/components/Icon/comment'
@@ -46,7 +46,13 @@ const User: FC<IProps> = () => {
   return (
     <UserWrapper>
       {nullObj(userInfo) ? (
-        '我登录了'
+        <div>
+          <Avatar
+            src={userInfo.profile.avatarUrl}
+            sx={{ width: 106, height: 106 }}
+          />
+          <span>{userInfo.profile.nickname}</span>
+        </div>
       ) : (
         <div>
           <div>登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</div>
