@@ -8,11 +8,13 @@ import {
 import themeReducer from './modules/theme'
 import recommendReducer from './modules/recommend'
 import loginReducer from './modules/login'
+import searchReducer from './modules/search'
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     recommend: recommendReducer,
-    login: loginReducer
+    login: loginReducer,
+    search: searchReducer
   }
 })
 
