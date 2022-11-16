@@ -105,9 +105,9 @@ export const fetchPoilingQrAction = createAsyncThunk(
       dispatch(setQrPoilingInfo('扫描成功, 请在手机上登录确认'))
     }
     if (res.code === 803) {
+      dispatch(setSkeletonFlag(true))
       dispatch(setQrPoilingInfo('登录成功'))
       dispatch(setQrPoilingData({}))
-      dispatch(setSkeletonFlag(true))
       setTimeout(() => {
         dispatch(setLoginSuccess(true))
       }, 500)

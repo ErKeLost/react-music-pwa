@@ -9,6 +9,11 @@ import { routes } from '@/router'
 import { Avatar, TextField } from '@mui/material'
 import MdiAccount from '~/components/Icon/account'
 import { nullObj } from '~/utils'
+import Paper from '@mui/material/Paper'
+import InputBase from '@mui/material/InputBase'
+import Divider from '@mui/material/Divider'
+import IconButton from '@mui/material/IconButton'
+import { MaterialSymbolsSearch } from '~/components/Icon/search'
 interface IProps {
   children?: ReactNode
 }
@@ -54,14 +59,43 @@ const Header: FC<IProps> = () => {
         </HeaderLeft>
         <HeaderRight>
           <div>
-            <TextField
+            {/* <TextField
               className="search"
               id="outlined-basic"
               label="音乐/视频/电台/用户"
               variant="outlined"
               focused
               size="small"
-            />
+            /> */}
+            <Paper
+              component="form"
+              sx={{
+                p: '2px 4px',
+                display: 'flex',
+                alignItems: 'center',
+                width: 400
+              }}
+            >
+              <IconButton sx={{ p: '10px' }} aria-label="menu">
+                {/* <MenuIcon /> */}
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="音乐/视频/电台/用户"
+                inputProps={{ 'aria-label': '音乐/视频/电台/用户' }}
+              />
+              <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                <MaterialSymbolsSearch />
+              </IconButton>
+              <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+              <IconButton
+                color="primary"
+                sx={{ p: '10px' }}
+                aria-label="directions"
+              >
+                {/* <DirectionsIcon /> */}
+              </IconButton>
+            </Paper>
           </div>
           <span className="login">
             <Avatar>
@@ -70,7 +104,8 @@ const Header: FC<IProps> = () => {
                   style={{ width: '40px', height: '40px' }}
                   src={userInfo?.profile?.avatarUrl}
                   alt=""
-                />
+                  onClick={handleTheme}
+                />  
               ) : (
                 <MdiAccount />
               )}

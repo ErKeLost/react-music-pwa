@@ -48,7 +48,7 @@ const User: FC<IProps> = () => {
 
   return (
     <UserWrapper>
-      {nullObj(userInfo) || skeletonFlag ? (
+      {nullObj(userInfo) ? (
         <div>{skeletonFlag ? <SkeletonFn /> : <UserInfoFn />}</div>
       ) : (
         <div>
