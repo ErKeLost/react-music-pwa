@@ -88,7 +88,7 @@ export function UserInfoFn(props) {
         src={userInfo?.profile?.avatarUrl}
         sx={{ width: 106, height: 106 }}
       />
-      <span className="nickname">{userInfo.profile.nickname}</span>
+      <span className="nickname">{userInfo?.profile?.nickname}</span>
       <div className="other">
         <div>
           <span>{userFans?.followed?.follow.length}</span>
