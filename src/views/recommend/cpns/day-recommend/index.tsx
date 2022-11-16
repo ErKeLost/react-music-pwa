@@ -12,7 +12,7 @@ import PlayArrowIcon from '@/components/Icon/play-arrow-icon'
 import SkipNextIcon from '@/components/Icon/skip-next-icon'
 import { DayCommendWrapper } from './style'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import { fetchRecommendSongsDataAction } from '@/store/modules/recommend'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-cards'
@@ -25,6 +25,17 @@ interface IProps {
 
 const DayRecommend: FC<IProps> = () => {
   const theme = useTheme()
+  const dispatch = useMusicDispatch()
+  useEffect(() => {
+    dispatch(fetchRecommendSongsDataAction())
+  }, [])
+  const { recommendSongs } = useMusicSelector((state) => {
+    return {
+      recommendSongs: state.recommend.recommendSongs
+    }
+  })
+  console.log(recommendSongs)
+
   return (
     <DayCommendWrapper className="wrap-v2 flex">
       <Swiper
@@ -33,21 +44,23 @@ const DayRecommend: FC<IProps> = () => {
         modules={[EffectCards]}
         className="mySwiper"
       >
-        {[1, 2, 3, 4, 5].map((item) => {
+        {recommendSongs?.dailySongs?.map((item) => {
           return (
-            <SwiperSlide key={item}>
+            <SwiperSlide key={item.id}>
               <Card sx={{ display: 'flex' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <CardContent sx={{ flex: '1 0 auto' }}>
                     <Typography component="div" variant="h6">
-                      Live From Space
+                      {item?.name}
                     </Typography>
                     <Typography
                       variant="subtitle1"
                       color="text.secondary"
                       component="div"
                     >
-                      Mac Miller
+                      {item?.ar.map((item) => {
+                        return <span key={item.name}>{item.name}</span>
+                      })}
                     </Typography>
                   </CardContent>
                   <Box
@@ -75,7 +88,7 @@ const DayRecommend: FC<IProps> = () => {
                 <CardMedia
                   component="img"
                   sx={{ width: 141, height: 141 }}
-                  image="http://p2.music.126.net/3RANMlMM-udSsHyInyVbrQ==/528865105234307.jpg?param=140y140"
+                  image={item?.al?.picUrl}
                   alt="Live from space album cover"
                 />
               </Card>

@@ -5,3 +5,9 @@ export function getBanners () {
     url: '/banner'
   })
 }
+
+export function getRecommendSongs () {
+  return request.get({
+    url: '/recommend/songs'
+  })
+}

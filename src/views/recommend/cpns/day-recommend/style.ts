@@ -15,6 +15,11 @@ export const DayCommendWrapper = styled.div`
     width: 340px;
     height: 150px;
   }
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .swiper-slide {
     display: flex;

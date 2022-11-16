@@ -42,8 +42,11 @@ export const UserInfoWrapper = styled.div`
   .other {
     display: flex;
     gap: 30px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
+    span {
+      font-size: 12px;
+    }
     div {
       display: flex;
       flex-direction: column;

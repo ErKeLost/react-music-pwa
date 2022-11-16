@@ -49,7 +49,7 @@ const User: FC<IProps> = () => {
   return (
     <UserWrapper>
       {nullObj(userInfo) || skeletonFlag ? (
-        <div>{skeletonFlag ? <UserInfoFn /> : <SkeletonFn />}</div>
+        <div>{skeletonFlag ? <SkeletonFn /> : <UserInfoFn />}</div>
       ) : (
         <div>
           <div>登录网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</div>
@@ -91,15 +91,15 @@ export function UserInfoFn(props) {
       <span className="nickname">{userInfo?.profile?.nickname}</span>
       <div className="other">
         <div>
-          <span>{userFans?.followed?.follow.length}</span>
+          <h2>{userFans?.followed?.follow.length}</h2>
           <span>关注</span>
         </div>
         <div>
-          <span>{userFans?.follow?.size}</span>
+          <h2>{userFans?.follow?.size}</h2>
           <span>粉丝</span>
         </div>
         <div>
-          <span> Lv{userInfo?.data?.level}</span>
+          <h2> Lv{userInfo?.data?.level}</h2>
           <span>等级</span>
         </div>
       </div>
@@ -109,9 +109,9 @@ export function UserInfoFn(props) {
 export function SkeletonFn(props) {
   return (
     <SkeletonWrapper>
-      <Skeleton variant="circular" width={90} height={90} />
-      <Skeleton variant="rectangular" width={150} height={30} />
-      <Skeleton variant="rounded" width={150} height={30} />
+      <Skeleton variant="circular" width={80} height={80} />
+      <Skeleton variant="rectangular" width={210} height={50} />
+      <Skeleton variant="rounded" width={210} height={40} />
     </SkeletonWrapper>
   )
 }

@@ -31,7 +31,7 @@ const initialState: ILoginState = {
   // @ts-ignore
   userFans: JSON.parse(localStorage.getItem('userFans')) ?? {},
   // @ts-ignore
-  skeletonFlag: !!JSON.parse(localStorage.getItem('userFans')) ?? false
+  skeletonFlag: !JSON.parse(localStorage.getItem('userFans')) ?? false
 }
 const loginSlice = createSlice({
   name: 'login',
@@ -128,7 +128,7 @@ export const fetchPoilingQrAction = createAsyncThunk(
         getUserFans(info.profile!.userId),
         getUserFollower(info.profile!.userId)
       ])
-      dispatch(setSkeletonFlag(true))
+      dispatch(setSkeletonFlag(false))
       let userFans: any = {}
       userFans.follow = userFan[0]
       userFans.followed = userFan[1]
