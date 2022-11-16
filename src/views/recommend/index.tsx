@@ -14,8 +14,8 @@ const Recommend: FC<IProps> = () => {
   }, [])
   return (
     <div>
-      <SwiperBanners></SwiperBanners>
-      <DayRecommend></DayRecommend>
+      {/* <SwiperBanners></SwiperBanners> */}
+      {/* <DayRecommend></DayRecommend> */}
     </div>
   )
 }
