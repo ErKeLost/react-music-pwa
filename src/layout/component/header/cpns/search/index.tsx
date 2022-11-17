@@ -11,6 +11,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 import Button from '@mui/material/Button'
 import { SearchRankingWrapper } from './style'
 import { getHotSearchListAction } from '~/store/modules'
+import classNames from 'classnames'
 interface IProps {
   children?: ReactNode
   searchWord?: () => {}
@@ -75,7 +76,7 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
             {...bindPopover(popupState)}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'center'
+              horizontal: 'left'
             }}
             transformOrigin={{
               vertical: 'top',
@@ -94,7 +95,15 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
                         {hotList?.slice(0, 10).map((item, index) => {
                           return (
                             <div key={item.searchWord} className="hotItem">
-                              <div className="hotItemIndex">{index + 1}</div>
+                              <div
+                                className={classNames('hotItemIndex', {
+                                  'hot-1': index === 0,
+                                  'hot-2': index === 1,
+                                  'hot-3': index === 2
+                                })}
+                              >
+                                {index + 1}
+                              </div>
                               <div className="item">{item.searchWord}</div>
                             </div>
                           )
@@ -122,7 +131,15 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
                           .map((item, index) => {
                             return (
                               <div key={item.id} className="hotItem">
-                                <div className="hotItemIndex">{index + 1}</div>
+                                <div
+                                  className={classNames('hotItemIndex', {
+                                    'hot-1': index === 0,
+                                    'hot-2': index === 1,
+                                    'hot-3': index === 2
+                                  })}
+                                >
+                                  {index + 1}
+                                </div>
                                 <div className="item">{item.name}</div>
                               </div>
                             )
@@ -149,18 +166,16 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
                 <div className="right">
                   <h3>最新Mv</h3>
                   <Divider className="divider" />
-                  <div className='mvList'>
-                    {
-                      mvList?.slice(0, 12).map((item, index) => {
-                        return (
-                          <div key={item.id} className="mvItem">
-                            <img src={item.cover} alt="" />
-                            <div>{item.name}</div>
-                            <div>{item.artistName}</div>
-                          </div>
-                        )
-                      })
-                    }
+                  <div className="mvList">
+                    {mvList?.slice(0, 12).map((item, index) => {
+                      return (
+                        <div key={item.id} className="mvItem">
+                          <img src={item.cover} alt="" />
+                          <div>{item.name}</div>
+                          <div>{item.artistName}</div>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

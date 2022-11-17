@@ -3,6 +3,15 @@ export const SearchRankingWrapper = styled.div`
   /* width: 1000px; */
   padding: 16px;
   font-size: 14px;
+  .hot-1 {
+    background-color: #e74c3c !important;
+  }
+  .hot-2 {
+    background-color: #e67e22 !important;
+  }
+  .hot-3 {
+    background-color: #f1c40f !important;
+  }
   .hotList {
     display: flex;
     gap: 20px;
@@ -13,6 +22,13 @@ export const SearchRankingWrapper = styled.div`
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      .item {
+        flex: 1;
+        width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .hotItemIndex {
         display: inline-block;
         width: 20px;
@@ -47,7 +63,7 @@ export const SearchRankingWrapper = styled.div`
   .right {
     width: 350px;
     .mvList {
-      height: 470px;
+      max-height: 550px;
       overflow-y: scroll;
       scrollbar-width: none; /* firefox */
       -ms-overflow-style: none; /* IE 10+ */
