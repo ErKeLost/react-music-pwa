@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 export const DayCommendWrapper = styled.div`
-  margin-top: 39px;
+  /* margin-top: 39px;
   display: flex;
-  flex-direction: column;
   gap: 20px;
   .songList {
     display: flex;
-    width: 729px;
+    width: 500px;
+    flex-direction: column;
     gap: 30px;
     flex-wrap: wrap;
   }
@@ -18,9 +18,9 @@ export const DayCommendWrapper = styled.div`
   .MuiCardContent-root {
     padding-top: 12px;
   }
-  .swiper {
+  .mySwiper {
     margin: 0;
-    width: 340px;
+    width: 740px;
     height: 150px;
   }
   div {
@@ -37,5 +37,5 @@ export const DayCommendWrapper = styled.div`
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-  }
+  } */
 `
