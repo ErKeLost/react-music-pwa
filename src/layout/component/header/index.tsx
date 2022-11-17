@@ -61,7 +61,7 @@ const Header: FC<IProps> = () => {
         </HeaderLeft>
         <HeaderRight>
           <Search searchWord={searchWord} searchFocus={searchFocus} />
-          {/* <span className="login">
+          <span className="login">
             <Avatar>
               {nullObj(userInfo) ? (
                 <img
@@ -74,7 +74,7 @@ const Header: FC<IProps> = () => {
                 <MdiAccount />
               )}
             </Avatar>
-          </span> */}
+          </span>
         </HeaderRight>
       </div>
       <div className="divider"></div>

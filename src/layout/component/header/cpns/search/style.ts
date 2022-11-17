@@ -22,6 +22,7 @@ export const SearchRankingWrapper = styled.div`
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: pointer;
       .item {
         flex: 1;
         width: 0;
@@ -56,8 +57,6 @@ export const SearchRankingWrapper = styled.div`
       flex-direction: column;
       .top {
       }
-    }
-    .right {
     }
   }
   .right {

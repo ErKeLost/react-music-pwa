@@ -3,6 +3,14 @@ import styled from 'styled-components'
 export const DayCommendWrapper = styled.div`
   margin-top: 39px;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .songList {
+    display: flex;
+    width: 729px;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
   .MuiCardContent-root,
   .MuiBox-root {
     padding-bottom: 0;
