@@ -2,7 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   searchHot,
   searchHotSimple,
-  personalizedSong
+  personalizedSong,
+  getSearch,
+  getDefaultSearch
 } from '@/services/modules/search'
 import { getNewMv } from '@/services/modules/mv'
 interface IStateState {
@@ -10,19 +12,29 @@ interface IStateState {
   hotListSimple: []
   personalizedSongList: []
   mvList: []
+  searchWord: any
+  defaultSearchWord: string
 }
 
 const initialState: IStateState = {
   hotList: [],
   hotListSimple: [],
   personalizedSongList: [],
-  mvList: []
+  mvList: [],
+  searchWord: {},
+  defaultSearchWord: ''
 }
 
 const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
+    setSearch(state, { payload }) {
+      state.searchWord = payload
+    },
+    setDefaultSearchWord(state, { payload }) {
+      state.defaultSearchWord = payload
+    },
     setHotList(state, { payload }) {
       state.hotList = payload
     },
@@ -37,13 +49,20 @@ const searchSlice = createSlice({
     }
   }
 })
-
+export const getSearchResultAction = createAsyncThunk('searchword', async (args, { dispatch }) => {
+  console.log(args);
+})
 export const getHotSearchListAction = createAsyncThunk(
   'search',
   async (args, { dispatch }) => {
     searchHot().then((res) => {
       dispatch(setHotList(res.data))
       console.log('详细热搜', res.data)
+    })
+    getDefaultSearch().then(res => {
+      dispatch(setDefaultSearchWord(res.data.showKeyword))
+      console.log('默认搜索关键词', res.data.showKeyword);
+
     })
     searchHotSimple().then((res) => {
       dispatch(setHotSimpleList(res.result.hots))
@@ -64,6 +83,7 @@ export const {
   setHotList,
   setHotSimpleList,
   setNewMvList,
-  setPersonalizedSongList
+  setPersonalizedSongList,
+  setDefaultSearchWord
 } = searchSlice.actions
 export default searchSlice.reducer

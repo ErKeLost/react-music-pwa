@@ -10,12 +10,14 @@ import { Avatar, TextField } from '@mui/material'
 import MdiAccount from '~/components/Icon/account'
 import { nullObj } from '~/utils'
 import Search from './cpns/search'
+import { getSearchResultAction } from '~/store/modules'
 
 interface IProps {
   children?: ReactNode
 }
 
 const Header: FC<IProps> = () => {
+  const [searchWord, setSearchWord] = useState('')
   const dispatch = useMusicDispatch()
   function handleTheme() {
     dispatch(changeTheme())
@@ -28,12 +30,16 @@ const Header: FC<IProps> = () => {
     shallowEqualMusic
   )
   console.log('有一次刷新了 头像')
-  function searchWord(e: HTMLElement) {
+  function handleSearchWord(e: HTMLElement) {
     console.log(e.target.value)
+    setSearchWord(e.target.value)
   }
   function searchFocus(e: HTMLElement) {
     console.log('被点击了 focus了')
   }
+  useEffect(() => {
+    dispatch(getSearchResultAction(searchWord)) 
+  }, [searchWord])
   return (
     <HeaderWrapper>
       <div className="content wrap-v1">
@@ -60,7 +66,7 @@ const Header: FC<IProps> = () => {
           </div>
         </HeaderLeft>
         <HeaderRight>
-          <Search searchWord={searchWord} searchFocus={searchFocus} />
+          <Search searchWord={handleSearchWord} searchFocus={searchFocus} />
           <span className="login">
             <Avatar>
               {nullObj(userInfo) ? (
