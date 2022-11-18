@@ -9,11 +9,14 @@ interface IProps {
 
 const SongListCard: FC<IProps> = (props) => {
   const { item } = props
-  return <SongListWrapper>
-    <div>
-    <img src={item?.picUrl} alt="" />
-    </div>
-  </SongListWrapper>
+  return (
+    <SongListWrapper>
+      <div>
+        <img src={item?.picUrl} alt="" />
+      </div>
+      <div className='song-name'>{item.name}</div>
+    </SongListWrapper>
+  )
 }
 
 export default memo(SongListCard)

@@ -46,7 +46,6 @@ const DayRecommend: FC<IProps> = () => {
   return (
     <DayCommendWrapper className="wrap-v2 flex">
       <div className="songList">
-        <h3>热门推荐</h3>
         <SongList cardList={recommendSongList}></SongList>
       </div>
       <div className="songs">

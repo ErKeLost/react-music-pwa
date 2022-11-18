@@ -12,3 +12,6 @@ export interface RequestConfig<T = AxiosResponse>
   interceptors?: RequestInterceptors<T>
   showLoading?: boolean
 }
+
+
+api?: (res: any) => Promise

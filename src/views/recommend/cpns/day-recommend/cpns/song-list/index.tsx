@@ -9,30 +9,38 @@ import SongListCard from '@/components/song-card'
 
 // import required modules
 import { Pagination } from 'swiper'
+import { SongListWrapper } from './style'
 interface IProps {
   children?: ReactNode
   cardList?: []
 }
-export default function App(props: IProps) {
+function SongList(props: IProps) {
   const { cardList } = props
+  console.log(cardList)
+
   return (
-    <Swiper
-      slidesPerView={4}
-      spaceBetween={30}
-      pagination={{
-        clickable: true
-      }}
-      loop={true}
-      modules={[Pagination]}
-      className="mySwiper"
-    >
-      {cardList?.map((item) => {
-        return (
-          <SwiperSlide key={item.id}>
-            <SongListCard key={item.id} item={item}></SongListCard>
-          </SwiperSlide>
-        )
-      })}
-    </Swiper>
+    <SongListWrapper>
+      <h3>每日推荐歌单</h3>
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={30}
+        pagination={{
+          clickable: true
+        }}
+        loop={true}
+        // modules={[Pagination]}
+        className="mySwiper"
+      >
+        {cardList?.map((item) => {
+          return (
+            <SwiperSlide key={item.id}>
+              <SongListCard key={item.id} item={item}></SongListCard>
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
+    </SongListWrapper>
   )
 }
+
+export default memo(SongList)
