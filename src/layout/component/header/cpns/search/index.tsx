@@ -42,8 +42,10 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined
   useEffect(() => {
-    console.log(input.current)
-    input.current!.querySelector('.MuiInputBase-input').focus()
+    setTimeout(() => {
+      console.log(input.current!.querySelector('input'))
+      input.current!.querySelector('input').focus()
+    }, 1000)
   }, [anchorEl])
   // 获取热门搜索词
   useEffect(() => {
@@ -77,7 +79,105 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
         </IconButton>
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
       </Paper>
-      <Popover
+      <SearchRankingWrapper>
+        {/* <Typography className="searchRanking" sx={{ p: 2 }}> */}
+        <div className="search">
+          <div className="left">
+            <div className="top">
+              <h3>热搜榜</h3>
+              <Divider className="divider" />
+              <div className="hotList">
+                <div>
+                  {hotList?.slice(0, 10).map((item, index) => {
+                    return (
+                      <div key={item.searchWord} className="hotItem">
+                        <div
+                          className={classNames('hotItemIndex', {
+                            'hot-1': index === 0,
+                            'hot-2': index === 1,
+                            'hot-3': index === 2
+                          })}
+                        >
+                          {index + 1}
+                        </div>
+                        <div className="item">{item.searchWord}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div>
+                  {hotList?.slice(10, 20).map((item, index) => {
+                    return (
+                      <div key={item.searchWord} className="hotItem">
+                        <div className="hotItemIndex">{index + 11}</div>
+                        <div className="item">{item.searchWord}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="bottom">
+              <h3>新歌在线</h3>
+              <Divider className="divider" />
+              <div className="hotList">
+                <div>
+                  {personalizedSongList
+                    ?.slice(0, personalizedSongList.length / 2)
+                    .map((item, index) => {
+                      return (
+                        <div key={item.id} className="hotItem">
+                          <div
+                            className={classNames('hotItemIndex', {
+                              'hot-1': index === 0,
+                              'hot-2': index === 1,
+                              'hot-3': index === 2
+                            })}
+                          >
+                            {index + 1}
+                          </div>
+                          <div className="item">{item.name}</div>
+                        </div>
+                      )
+                    })}
+                </div>
+                <div>
+                  {personalizedSongList
+                    ?.slice(
+                      personalizedSongList.length / 2,
+                      personalizedSongList.length
+                    )
+                    .map((item, index) => {
+                      return (
+                        <div key={item.id} className="hotItem">
+                          <div className="hotItemIndex">{index + 3}</div>
+                          <div className="item">{item.name}</div>
+                        </div>
+                      )
+                    })}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="right">
+            <h3>最新Mv</h3>
+            <Divider className="divider" />
+            <div className="mvList">
+              {mvList?.slice(0, 12).map((item, index) => {
+                return (
+                  <div key={item.id} className="mvItem">
+                    <img src={item.cover} alt="" />
+                    <div>{item.name}</div>
+                    <div>{item.artistName}</div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+        {/* </Typography> */}
+      </SearchRankingWrapper>
+      {/* <Popover
         // {...bindPopover(popupState)}
         open={open}
         anchorEl={anchorEl}
@@ -90,106 +190,7 @@ const Search: FC<IProps> = ({ searchWord, searchFocus }) => {
           vertical: 'top',
           horizontal: 'center'
         }}
-      >
-        <SearchRankingWrapper>
-          {/* <Typography className="searchRanking" sx={{ p: 2 }}> */}
-          <div className="search">
-            <div className="left">
-              <div className="top">
-                <h3>热搜榜</h3>
-                <Divider className="divider" />
-                <div className="hotList">
-                  <div>
-                    {hotList?.slice(0, 10).map((item, index) => {
-                      return (
-                        <div key={item.searchWord} className="hotItem">
-                          <div
-                            className={classNames('hotItemIndex', {
-                              'hot-1': index === 0,
-                              'hot-2': index === 1,
-                              'hot-3': index === 2
-                            })}
-                          >
-                            {index + 1}
-                          </div>
-                          <div className="item">{item.searchWord}</div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                  <div>
-                    {hotList?.slice(10, 20).map((item, index) => {
-                      return (
-                        <div key={item.searchWord} className="hotItem">
-                          <div className="hotItemIndex">{index + 11}</div>
-                          <div className="item">{item.searchWord}</div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className="bottom">
-                <h3>新歌在线</h3>
-                <Divider className="divider" />
-                <div className="hotList">
-                  <div>
-                    {personalizedSongList
-                      ?.slice(0, personalizedSongList.length / 2)
-                      .map((item, index) => {
-                        return (
-                          <div key={item.id} className="hotItem">
-                            <div
-                              className={classNames('hotItemIndex', {
-                                'hot-1': index === 0,
-                                'hot-2': index === 1,
-                                'hot-3': index === 2
-                              })}
-                            >
-                              {index + 1}
-                            </div>
-                            <div className="item">{item.name}</div>
-                          </div>
-                        )
-                      })}
-                  </div>
-                  <div>
-                    {personalizedSongList
-                      ?.slice(
-                        personalizedSongList.length / 2,
-                        personalizedSongList.length
-                      )
-                      .map((item, index) => {
-                        return (
-                          <div key={item.id} className="hotItem">
-                            <div className="hotItemIndex">{index + 3}</div>
-                            <div className="item">{item.name}</div>
-                          </div>
-                        )
-                      })}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="right">
-              <h3>最新Mv</h3>
-              <Divider className="divider" />
-              <div className="mvList">
-                {mvList?.slice(0, 12).map((item, index) => {
-                  return (
-                    <div key={item.id} className="mvItem">
-                      <img src={item.cover} alt="" />
-                      <div>{item.name}</div>
-                      <div>{item.artistName}</div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-          {/* </Typography> */}
-        </SearchRankingWrapper>
-      </Popover>
+      ></Popover> */}
     </div>
     // )}
     // </PopupState>
