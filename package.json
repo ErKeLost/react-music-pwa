@@ -19,6 +19,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@floating-ui/react-dom": "^1.0.1",
     "@mui/material": "^5.10.12",
     "@mui/styled-engine-sc": "^5.10.6",
     "@reduxjs/toolkit": "^1.9.0",
@@ -43,7 +44,6 @@
     "@iconify/json": "^2.1.116",
     "@types/node": "^18.11.7",
     "@types/nprogress": "^0.2.0",
-    "@types/prop-types": "^15.7.5",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "@types/styled-components": "^5.1.26",
@@ -53,7 +53,6 @@
     "eslint": "^8.24.0",
     "esno": "^0.16.3",
     "prettier": "^2.7.1",
-    "prop-types": "^15.8.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.8.3",
     "unplugin-auto-import": "^0.11.4",

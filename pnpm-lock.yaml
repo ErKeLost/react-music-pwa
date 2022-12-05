@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
+  '@floating-ui/react-dom': ^1.0.1
   '@iconify-json/carbon': ^1.1.8
   '@iconify/json': ^2.1.116
   '@mui/material': ^5.10.12
@@ -10,7 +11,6 @@ specifiers:
   '@reduxjs/toolkit': ^1.9.0
   '@types/node': ^18.11.7
   '@types/nprogress': ^0.2.0
-  '@types/prop-types': ^15.7.5
   '@types/react': ^18.0.22
   '@types/react-dom': ^18.0.7
   '@types/styled-components': ^5.1.26
@@ -28,7 +28,6 @@ specifiers:
   notistack: ^2.0.8
   nprogress: ^0.2.0
   prettier: ^2.7.1
-  prop-types: ^15.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-redux: ^8.0.5
@@ -47,6 +46,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
   '@emotion/styled': 11.10.5_otcjdfkheatawhug6fwk7ldzni
+  '@floating-ui/react-dom': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@mui/material': 5.10.14_thp4wrxo45nyllusrnt46mid4u
   '@mui/styled-engine-sc': 5.10.14_eayongmbiubxhlvsbyl6yact2u
   '@reduxjs/toolkit': 1.9.0_k4ae6lp43ej6mezo3ztvx6pykq
@@ -71,7 +71,6 @@ devDependencies:
   '@iconify/json': 2.1.139
   '@types/node': 18.11.9
   '@types/nprogress': 0.2.0
-  '@types/prop-types': 15.7.5
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
   '@types/styled-components': 5.1.26
@@ -81,7 +80,6 @@ devDependencies:
   eslint: 8.27.0
   esno: 0.16.3
   prettier: 2.7.1
-  prop-types: 15.8.1
   rimraf: 3.0.2
   typescript: 4.9.3
   unplugin-auto-import: 0.11.4
@@ -1517,6 +1515,27 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@floating-ui/core/1.0.2:
+    resolution: {integrity: sha512-Skfy0YS3NJ5nV9us0uuPN0HDk1Q4edljaOhRBJGDWs9EBa7ZVMYBHRFlhLvvmwEoaIM9BlH6QJFn9/uZg0bACg==}
+    dev: false
+
+  /@floating-ui/dom/1.0.7:
+    resolution: {integrity: sha512-6RsqvCYe0AYWtsGvuWqCm7mZytnXAZCjWtsWu1Kg8dI3INvj/DbKlDsZO+mKSaQdPT12uxIW9W2dAWJkPx4Y5g==}
+    dependencies:
+      '@floating-ui/core': 1.0.2
+    dev: false
+
+  /@floating-ui/react-dom/1.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-UW0t1Gi8ikbDRr8cQPVcqIDMBwUEENe5V4wlHWdrJ5egFnRQFBV9JirauTBFI6S8sM1qFUC1i+qa3g87E6CLTw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/dom': 1.0.7
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.11.7:
     resolution: {integrity: sha512-kBbPWzN8oVMLb0hOUYXhmxggL/1cJE6ydvjDIGi9EnAGUyA7cLVKQg+d/Dsm+KZwx2czGHrCmMVLiyg8s5JPKw==}
@@ -3522,6 +3541,7 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -3699,6 +3719,7 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /object-inspect/1.12.2:
     resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
@@ -3861,6 +3882,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: false
 
   /proxy-from-env/1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
