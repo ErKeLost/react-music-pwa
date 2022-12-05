@@ -18,6 +18,7 @@ interface IProps {
 
 const Header: FC<IProps> = () => {
   const [searchWord, setSearchWord] = useState('')
+  const [searchFlag, setSearchFlag] = useState(false)
   const dispatch = useMusicDispatch()
   function handleTheme() {
     dispatch(changeTheme())
@@ -36,9 +37,14 @@ const Header: FC<IProps> = () => {
   }
   function searchFocus(e: HTMLElement) {
     console.log('被点击了 focus了')
+    setSearchFlag(true)
+  }
+  function searchBlur(e: HTMLElement) {
+    console.log('被点击了 focus了')
+    setSearchFlag(false)
   }
   useEffect(() => {
-    dispatch(getSearchResultAction(searchWord)) 
+    dispatch(getSearchResultAction(searchWord))
   }, [searchWord])
   return (
     <HeaderWrapper>
@@ -66,7 +72,12 @@ const Header: FC<IProps> = () => {
           </div>
         </HeaderLeft>
         <HeaderRight>
-          <Search searchWord={handleSearchWord} searchFocus={searchFocus} />
+          <Search
+            searchFlag={searchFlag}
+            searchWord={handleSearchWord}
+            searchFocus={searchFocus}
+            searchBlur={searchBlur}
+          />
           <span className="login">
             <Avatar>
               {nullObj(userInfo) ? (

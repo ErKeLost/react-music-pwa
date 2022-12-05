@@ -2,6 +2,12 @@ import styled from 'styled-components'
 export const SearchRankingWrapper = styled.div`
   /* width: 1000px; */
   padding: 16px;
+  background-color: ${(props) => props.theme.palette.background.base};
+  border-radius: 8px;
+  position: absolute;
+  top: 70px;
+  left: -50px;
+  z-index: 99;
   font-size: 14px;
   .hot-1 {
     background-color: #e74c3c !important;
