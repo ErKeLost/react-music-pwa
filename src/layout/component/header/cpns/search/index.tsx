@@ -106,20 +106,27 @@ const Search: FC<IProps> = ({
                       : hotList?.slice(0, 10).map((item, index) => {
                           return (
                             <div key={index}>
-                              {renderSearchView(item, index)}
+                              {renderSearchView(item, index, true)}
                             </div>
                           )
                         })}
                   </div>
                   <div>
-                    {hotList?.slice(10, 20).map((item, index) => {
-                      return (
-                        <div key={item.searchWord} className="hotItem">
-                          <div className="hotItemIndex">{index + 11}</div>
-                          <div className="item">{item.searchWord}</div>
-                        </div>
-                      )
-                    })}
+                    {searchValue?.songs
+                      ? searchValue?.songs?.slice(10, 20).map((item, index) => {
+                          return (
+                            <div key={index}>
+                              {renderSearchView(item, index + 10)}
+                            </div>
+                          )
+                        })
+                      : hotList?.slice(10, 20).map((item, index) => {
+                          return (
+                            <div key={index}>
+                              {renderSearchView(item, index + 10, true)}
+                            </div>
+                          )
+                        })}
                   </div>
                 </div>
               </div>
@@ -204,9 +211,13 @@ const Search: FC<IProps> = ({
   )
 }
 
-function renderSearchView(item: { searchWord: string }, index: number) {
+function renderSearchView(
+  item: { searchWord: string; name: string },
+  index: number,
+  flag: boolean = false
+) {
   return (
-    <div key={item.searchWord} className="hotItem">
+    <div key={item[flag ? 'searchWord' : 'name']} className="hotItem">
       <div
         className={classNames('hotItemIndex', {
           'hot-1': index === 0,
@@ -216,7 +227,7 @@ function renderSearchView(item: { searchWord: string }, index: number) {
       >
         {index + 1}
       </div>
-      <div className="item">{item.searchWord}</div>
+      <div className="item">{item[flag ? 'searchWord' : 'name']}</div>
     </div>
   )
 }
