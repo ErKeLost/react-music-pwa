@@ -10,7 +10,7 @@ import { Avatar, TextField } from '@mui/material'
 import MdiAccount from '~/components/Icon/account'
 import { nullObj } from '~/utils'
 import Search from './cpns/search'
-import { getSearchResultAction } from '~/store/modules'
+import { getSearchResultAction, getSearchValueAction } from '~/store/modules'
 
 interface IProps {
   children?: ReactNode
@@ -24,27 +24,30 @@ const Header: FC<IProps> = () => {
     dispatch(changeTheme())
   }
   const one = routes.filter((item) => item.path !== '/')
-  const { userInfo } = useMusicSelector(
+  const { userInfo, searchValue } = useMusicSelector(
     (state: any) => ({
-      userInfo: state.login.userInfo
+      userInfo: state.login.userInfo,
+      searchValue: state.search.searchValue
     }),
     shallowEqualMusic
   )
-  console.log('有一次刷新了 头像')
+  const debounceFn = debounce(setSearchThrottle, 800)
+
   function handleSearchWord(e: HTMLElement) {
-    console.log(e.target.value)
-    setSearchWord(e.target.value)
+    const currentValue = e.target.value
+    debounceFn(currentValue)
+  }
+  function setSearchThrottle(value: string) {
+    setSearchWord(value)
   }
   function searchFocus(e: HTMLElement) {
-    console.log('被点击了 focus了')
     setSearchFlag(true)
   }
   function searchBlur(e: HTMLElement) {
-    console.log('被点击了 focus了')
     setSearchFlag(false)
   }
   useEffect(() => {
-    dispatch(getSearchResultAction(searchWord))
+    dispatch(getSearchValueAction(searchWord))
   }, [searchWord])
   return (
     <HeaderWrapper>
@@ -100,3 +103,15 @@ const Header: FC<IProps> = () => {
 }
 
 export default memo(Header)
+function debounce(fn, delay) {
+  let time = null //time用来控制事件的触发
+  return function (args) {
+    if (time !== null) {
+      clearTimeout(time)
+    }
+    time = setTimeout(() => {
+      fn.call(this, args)
+      //利用call(),让this的指针从指向window 转成指向input
+    }, delay)
+  }
+}

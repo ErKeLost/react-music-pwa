@@ -6,7 +6,7 @@ export const SearchRankingWrapper = styled.div`
   border-radius: 8px;
   position: absolute;
   top: 70px;
-  left: -50px;
+  right: 0px;
   z-index: 99;
   font-size: 14px;
   .hot-1 {

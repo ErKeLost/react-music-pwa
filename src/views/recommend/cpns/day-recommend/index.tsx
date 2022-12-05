@@ -41,7 +41,6 @@ const DayRecommend: FC<IProps> = () => {
       recommendSongList: state.recommend.recommendSongList
     }
   })
-  console.log(recommendSongs)
 
   return (
     <DayCommendWrapper className="wrap-v2 flex">

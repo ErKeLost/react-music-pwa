@@ -44,23 +44,18 @@ const loginSlice = createSlice({
       state.codeInfo = payload
     },
     setQrPoilingData(state, { payload }) {
-      console.log(payload)
       state.poilingData = payload
     },
     setQrPoilingInfo(state, { payload }) {
-      console.log(payload)
       state.poilingInfo = payload
     },
     setLoginSuccess(state, { payload }) {
-      console.log(payload)
       state.loginSuccess = payload
     },
     setUserInfo(state, { payload }) {
-      console.log(payload)
       state.userInfo = payload
     },
     setUserFans(state, { payload }) {
-      console.log(payload)
       state.userFans = payload
     },
     setSkeletonFlag(state, { payload }) {
@@ -84,7 +79,6 @@ export const fetchQrImgAction = createAsyncThunk(
       key: state.login.qrCode,
       qrimg: state.login.qrCode
     })
-    console.log(result)
 
     dispatch(setQrCodeInfoData(result))
   }
@@ -95,7 +89,6 @@ export const fetchPoilingQrAction = createAsyncThunk(
   async (args, { getState, dispatch }) => {
     const state = getState()
     const res = await getQrPoiling({ key: state.login.qrCode })
-    console.log(res)
     if (res.code === 800) {
       dispatch(setQrPoilingInfo('登录取消'))
       dispatch(setLoginSuccess(true))

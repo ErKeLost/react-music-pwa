@@ -56,7 +56,6 @@ export default function AlertDialogSlide(props: IProps) {
   useEffect(() => {
     if (loginSuccess) {
       clearInterval(interval.current)
-      console.log('login success 在watch effect 中执行了', loginSuccess)
       handleClose()
     }
   }, [loginSuccess])
@@ -65,7 +64,6 @@ export default function AlertDialogSlide(props: IProps) {
       checkQrStatus()
     } else {
       clearInterval(interval.current)
-      console.log('关闭dialog了啊')
       dispatch(setQrPoilingInfo('扫码登录或扫码下载APP'))
     }
   }, [loginDialog])

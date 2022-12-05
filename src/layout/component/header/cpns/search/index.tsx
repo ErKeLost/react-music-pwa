@@ -28,13 +28,14 @@ const Search: FC<IProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const dispatch = useMusicDispatch()
-  const { hotList, hotListSimple, personalizedSongList, mvList } =
+  const { hotList, hotListSimple, personalizedSongList, searchValue, mvList } =
     useMusicSelector(({ search }) => {
       return {
         hotList: search.hotList,
         hotListSimple: search.hotListSimple,
         personalizedSongList: search.personalizedSongList,
-        mvList: search.mvList
+        mvList: search.mvList,
+        searchValue: search.searchValue
       }
     })
 
@@ -52,6 +53,9 @@ const Search: FC<IProps> = ({
   useEffect(() => {
     dispatch(getHotSearchListAction())
   }, [])
+  useEffect(() => {
+    console.log(searchValue)
+  }, [searchValue])
   return (
     // <PopupState variant="popover" popupId="demo-popup-popover">
     //   {(popupState) => (
@@ -83,17 +87,52 @@ const Search: FC<IProps> = ({
       </Paper>
       {searchFlag ? (
         <SearchRankingWrapper>
-          <Typography className="searchRanking" sx={{ p: 2 }}>
-            <div className="search">
-              <div className="left">
-                <div className="top">
-                  <h3>热搜榜</h3>
-                  <Divider className="divider" />
-                  <div className="hotList">
-                    <div>
-                      {hotList?.slice(0, 10).map((item, index) => {
+          {/* <Typography className="searchRanking" sx={{ p: 2 }}> */}
+          <div className="search">
+            <div className="left">
+              <div className="top">
+                <h3>热搜榜</h3>
+                <Divider className="divider" />
+                <div className="hotList">
+                  <div>
+                    {searchValue?.songs
+                      ? searchValue?.songs?.slice(0, 10).map((item, index) => {
+                          return (
+                            <div key={index}>
+                              {renderSearchView(item, index)}
+                            </div>
+                          )
+                        })
+                      : hotList?.slice(0, 10).map((item, index) => {
+                          return (
+                            <div key={index}>
+                              {renderSearchView(item, index)}
+                            </div>
+                          )
+                        })}
+                  </div>
+                  <div>
+                    {hotList?.slice(10, 20).map((item, index) => {
+                      return (
+                        <div key={item.searchWord} className="hotItem">
+                          <div className="hotItemIndex">{index + 11}</div>
+                          <div className="item">{item.searchWord}</div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className="bottom">
+                <h3>新歌在线</h3>
+                <Divider className="divider" />
+                <div className="hotList">
+                  <div>
+                    {personalizedSongList
+                      ?.slice(0, personalizedSongList.length / 2)
+                      .map((item, index) => {
                         return (
-                          <div key={item.searchWord} className="hotItem">
+                          <div key={item.id} className="hotItem">
                             <div
                               className={classNames('hotItemIndex', {
                                 'hot-1': index === 0,
@@ -103,82 +142,46 @@ const Search: FC<IProps> = ({
                             >
                               {index + 1}
                             </div>
-                            <div className="item">{item.searchWord}</div>
+                            <div className="item">{item.name}</div>
                           </div>
                         )
                       })}
-                    </div>
-                    <div>
-                      {hotList?.slice(10, 20).map((item, index) => {
+                  </div>
+                  <div>
+                    {personalizedSongList
+                      ?.slice(
+                        personalizedSongList.length / 2,
+                        personalizedSongList.length
+                      )
+                      .map((item, index) => {
                         return (
-                          <div key={item.searchWord} className="hotItem">
-                            <div className="hotItemIndex">{index + 11}</div>
-                            <div className="item">{item.searchWord}</div>
+                          <div key={item.id} className="hotItem">
+                            <div className="hotItemIndex">{index + 3}</div>
+                            <div className="item">{item.name}</div>
                           </div>
                         )
                       })}
-                    </div>
                   </div>
-                </div>
-                <div className="bottom">
-                  <h3>新歌在线</h3>
-                  <Divider className="divider" />
-                  <div className="hotList">
-                    <div>
-                      {personalizedSongList
-                        ?.slice(0, personalizedSongList.length / 2)
-                        .map((item, index) => {
-                          return (
-                            <div key={item.id} className="hotItem">
-                              <div
-                                className={classNames('hotItemIndex', {
-                                  'hot-1': index === 0,
-                                  'hot-2': index === 1,
-                                  'hot-3': index === 2
-                                })}
-                              >
-                                {index + 1}
-                              </div>
-                              <div className="item">{item.name}</div>
-                            </div>
-                          )
-                        })}
-                    </div>
-                    <div>
-                      {personalizedSongList
-                        ?.slice(
-                          personalizedSongList.length / 2,
-                          personalizedSongList.length
-                        )
-                        .map((item, index) => {
-                          return (
-                            <div key={item.id} className="hotItem">
-                              <div className="hotItemIndex">{index + 3}</div>
-                              <div className="item">{item.name}</div>
-                            </div>
-                          )
-                        })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="right">
-                <h3>最新Mv</h3>
-                <Divider className="divider" />
-                <div className="mvList">
-                  {mvList?.slice(0, 12).map((item, index) => {
-                    return (
-                      <div key={item.id} className="mvItem">
-                        <img src={item.cover} alt="" />
-                        <div>{item.name}</div>
-                        <div>{item.artistName}</div>
-                      </div>
-                    )
-                  })}
                 </div>
               </div>
             </div>
-          </Typography>
+            <div className="right">
+              <h3>最新Mv</h3>
+              <Divider className="divider" />
+              <div className="mvList">
+                {mvList?.slice(0, 12).map((item, index) => {
+                  return (
+                    <div key={item.id} className="mvItem">
+                      <img src={item.cover} alt="" />
+                      <div>{item.name}</div>
+                      <div>{item.artistName}</div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+          {/* </Typography> */}
         </SearchRankingWrapper>
       ) : null}
       {/* <Popover
@@ -198,6 +201,23 @@ const Search: FC<IProps> = ({
     </div>
     // )}
     // </PopupState>
+  )
+}
+
+function renderSearchView(item: { searchWord: string }, index: number) {
+  return (
+    <div key={item.searchWord} className="hotItem">
+      <div
+        className={classNames('hotItemIndex', {
+          'hot-1': index === 0,
+          'hot-2': index === 1,
+          'hot-3': index === 2
+        })}
+      >
+        {index + 1}
+      </div>
+      <div className="item">{item.searchWord}</div>
+    </div>
   )
 }
 

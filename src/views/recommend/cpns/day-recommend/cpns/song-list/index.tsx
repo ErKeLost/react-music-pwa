@@ -16,7 +16,6 @@ interface IProps {
 }
 function SongList(props: IProps) {
   const { cardList } = props
-  console.log(cardList)
 
   return (
     <SongListWrapper>

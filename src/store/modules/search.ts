@@ -4,6 +4,7 @@ import {
   searchHotSimple,
   personalizedSong,
   getSearch,
+  getSearchValue,
   getDefaultSearch
 } from '@/services/modules/search'
 import { getNewMv } from '@/services/modules/mv'
@@ -14,6 +15,7 @@ interface IStateState {
   mvList: []
   searchWord: any
   defaultSearchWord: string
+  searchValue: []
 }
 
 const initialState: IStateState = {
@@ -22,7 +24,8 @@ const initialState: IStateState = {
   personalizedSongList: [],
   mvList: [],
   searchWord: {},
-  defaultSearchWord: ''
+  defaultSearchWord: '',
+  searchValue: []
 }
 
 const searchSlice = createSlice({
@@ -31,6 +34,9 @@ const searchSlice = createSlice({
   reducers: {
     setSearch(state, { payload }) {
       state.searchWord = payload
+    },
+    setSearchValue(state, { payload }) {
+      state.searchValue = payload
     },
     setDefaultSearchWord(state, { payload }) {
       state.defaultSearchWord = payload
@@ -49,41 +55,45 @@ const searchSlice = createSlice({
     }
   }
 })
-export const getSearchResultAction = createAsyncThunk('searchword', async (args, { dispatch }) => {
-  console.log(args);
-})
+export const getSearchResultAction = createAsyncThunk(
+  'searchword',
+  async (args, { dispatch }) => {
+    console.log(args)
+  }
+)
 export const getHotSearchListAction = createAsyncThunk(
   'search',
   async (args, { dispatch }) => {
     searchHot().then((res) => {
       dispatch(setHotList(res.data))
-      console.log('详细热搜', res.data)
     })
-    getDefaultSearch().then(res => {
+    getDefaultSearch().then((res) => {
       dispatch(setDefaultSearchWord(res.data.showKeyword))
-      console.log('默认搜索关键词', res.data.showKeyword);
-
     })
     searchHotSimple().then((res) => {
       dispatch(setHotSimpleList(res.result.hots))
-      console.log('热搜', res.result.hots)
     })
     personalizedSong().then((res) => {
       dispatch(setPersonalizedSongList(res.result))
-      console.log('最新音乐', res.result)
     })
     getNewMv().then((res) => {
       dispatch(setNewMvList(res.data))
-      console.log('mv', res.data)
     })
   }
 )
-
+export const getSearchValueAction = createAsyncThunk(
+  'searchValue',
+  async (args: string, { dispatch }) => {
+    const data = await getSearchValue(args)
+    dispatch(setSearchValue(data.result))
+  }
+)
 export const {
   setHotList,
   setHotSimpleList,
   setNewMvList,
   setPersonalizedSongList,
-  setDefaultSearchWord
+  setDefaultSearchWord,
+  setSearchValue
 } = searchSlice.actions
 export default searchSlice.reducer

@@ -44,7 +44,6 @@ const User: FC<IProps> = () => {
     }),
     shallowEqualMusic
   )
-  console.log()
 
   return (
     <UserWrapper>

@@ -38,8 +38,6 @@ export const fetchRecommendSongsDataAction = createAsyncThunk(
   'recommendSongSlice',
   async (arg, { getState, dispatch }) => {
     const res = await getRecommendSongs()
-    console.log(res.data);
-
     dispatch(setRecommendSongsData(res.data))
   }
 )
@@ -48,7 +46,6 @@ export const fetchRecommendSongListDataAction = createAsyncThunk(
   'recommendSongListSlice',
   async (arg, { getState, dispatch }) => {
     const res = await getSongListDay()
-    console.log(res.c);
     dispatch(setRecommendSongListData(res.recommend))
   }
 )
