@@ -53,6 +53,7 @@ export const SearchRankingWrapper = styled.div`
   }
   .divider {
     margin: 12px 0;
+    height: 1px !important;
   }
   .search {
     display: flex;

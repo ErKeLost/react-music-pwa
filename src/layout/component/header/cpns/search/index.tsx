@@ -12,6 +12,8 @@ import Button from '@mui/material/Button'
 import { SearchRankingWrapper } from './style'
 import { getHotSearchListAction, getSearchResultAction } from '~/store/modules'
 import classNames from 'classnames'
+import Spin from '@/components/loading'
+import { setSearchLoading } from '~/store/modules'
 interface IProps {
   children?: ReactNode
   searchWord?: () => {}
@@ -28,16 +30,23 @@ const Search: FC<IProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const dispatch = useMusicDispatch()
-  const { hotList, hotListSimple, personalizedSongList, searchValue, mvList } =
-    useMusicSelector(({ search }) => {
-      return {
-        hotList: search.hotList,
-        hotListSimple: search.hotListSimple,
-        personalizedSongList: search.personalizedSongList,
-        mvList: search.mvList,
-        searchValue: search.searchValue
-      }
-    })
+  const {
+    hotList,
+    searchLoading,
+    hotListSimple,
+    personalizedSongList,
+    searchValue,
+    mvList
+  } = useMusicSelector(({ search }) => {
+    return {
+      hotList: search.hotList,
+      hotListSimple: search.hotListSimple,
+      personalizedSongList: search.personalizedSongList,
+      mvList: search.mvList,
+      searchValue: search.searchValue,
+      searchLoading: search.searchLoading
+    }
+  })
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -55,6 +64,7 @@ const Search: FC<IProps> = ({
   }, [])
   useEffect(() => {
     console.log(searchValue)
+    dispatch(setSearchLoading(false))
   }, [searchValue])
   return (
     // <PopupState variant="popover" popupId="demo-popup-popover">
@@ -128,6 +138,7 @@ const Search: FC<IProps> = ({
                           )
                         })}
                   </div>
+                  {searchLoading ? <Spin /> : null}
                 </div>
               </div>
               <div className="bottom">

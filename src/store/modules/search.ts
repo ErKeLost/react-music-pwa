@@ -16,6 +16,7 @@ interface IStateState {
   searchWord: any
   defaultSearchWord: string
   searchValue: []
+  searchLoading: boolean
 }
 
 const initialState: IStateState = {
@@ -25,13 +26,17 @@ const initialState: IStateState = {
   mvList: [],
   searchWord: {},
   defaultSearchWord: '',
-  searchValue: []
+  searchValue: [],
+  searchLoading: false
 }
 
 const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
+    setSearchLoading(state, { payload }) {
+      state.searchLoading = payload
+    },
     setSearch(state, { payload }) {
       state.searchWord = payload
     },
@@ -94,6 +99,7 @@ export const {
   setNewMvList,
   setPersonalizedSongList,
   setDefaultSearchWord,
-  setSearchValue
+  setSearchValue,
+  setSearchLoading
 } = searchSlice.actions
 export default searchSlice.reducer

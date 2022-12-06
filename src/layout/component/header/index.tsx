@@ -3,6 +3,7 @@ import type { FC, ReactNode } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useMusicDispatch } from '@/store'
 import { changeTheme } from '@/store/modules/theme'
+import { setSearchLoading } from '~/store/modules'
 import Button from '@mui/material/Button'
 import { HeaderLeft, HeaderRight, HeaderWrapper } from './style'
 import { routes } from '@/router'
@@ -27,13 +28,18 @@ const Header: FC<IProps> = () => {
   const { userInfo, searchValue } = useMusicSelector(
     (state: any) => ({
       userInfo: state.login.userInfo,
-      searchValue: state.search.searchValue
+      searchValue: state.search.searchValue,
     }),
     shallowEqualMusic
   )
   const debounceFn = debounce(setSearchThrottle, 800)
 
   function handleSearchWord(e: HTMLElement) {
+    if (e.target.value.trim().length > 0) {
+      dispatch(setSearchLoading(true))
+    } else {
+      dispatch(setSearchLoading(false))
+    }
     const currentValue = e.target.value
     debounceFn(currentValue)
   }
@@ -44,7 +50,7 @@ const Header: FC<IProps> = () => {
     setSearchFlag(true)
   }
   function searchBlur(e: HTMLElement) {
-    setSearchFlag(false)
+    // setSearchFlag(false)
   }
   useEffect(() => {
     dispatch(getSearchValueAction(searchWord))
