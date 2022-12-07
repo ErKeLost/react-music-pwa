@@ -5,12 +5,8 @@ import InputBase from '@mui/material/InputBase'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import { MaterialSymbolsSearch } from '~/components/Icon/search'
-import Popover from '@mui/material/Popover'
-import Typography from '@mui/material/Typography'
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
-import Button from '@mui/material/Button'
 import { SearchRankingWrapper } from './style'
-import { getHotSearchListAction, getSearchResultAction } from '~/store/modules'
+import { getHotSearchListAction } from '~/store/modules'
 import classNames from 'classnames'
 import Spin from '@/components/loading'
 import { setSearchLoading } from '~/store/modules'
@@ -33,7 +29,6 @@ const Search: FC<IProps> = ({
   const {
     hotList,
     searchLoading,
-    hotListSimple,
     personalizedSongList,
     searchValue,
     mvList
@@ -51,24 +46,15 @@ const Search: FC<IProps> = ({
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
   const input = useRef<any>(null)
-  const open = Boolean(anchorEl)
-  const id = open ? 'simple-popover' : undefined
   // 获取热门搜索词
   useEffect(() => {
     dispatch(getHotSearchListAction())
   }, [])
   useEffect(() => {
-    console.log(searchValue)
     dispatch(setSearchLoading(false))
   }, [searchValue])
   return (
-    // <PopupState variant="popover" popupId="demo-popup-popover">
-    //   {(popupState) => (
     <div style={{ position: 'relative' }}>
       <Paper
         // {...bindTrigger(popupState)}
@@ -97,7 +83,6 @@ const Search: FC<IProps> = ({
       </Paper>
       {searchFlag ? (
         <SearchRankingWrapper>
-          {/* <Typography className="searchRanking" sx={{ p: 2 }}> */}
           <div className="search">
             <div className="left">
               <div className="top">
