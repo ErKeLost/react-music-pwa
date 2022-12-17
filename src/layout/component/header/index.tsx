@@ -12,7 +12,7 @@ import MdiAccount from '~/components/Icon/account'
 import { nullObj } from '~/utils'
 import Search from './cpns/search'
 import { getSearchResultAction, getSearchValueAction } from '~/store/modules'
-
+import { useOnClickOutside } from '@/hooks/useClickOutSide'
 interface IProps {
   children?: ReactNode
 }
@@ -28,12 +28,15 @@ const Header: FC<IProps> = () => {
   const { userInfo, searchValue } = useMusicSelector(
     (state: any) => ({
       userInfo: state.login.userInfo,
-      searchValue: state.search.searchValue,
+      searchValue: state.search.searchValue
     }),
     shallowEqualMusic
   )
   const debounceFn = debounce(setSearchThrottle, 800)
-
+  const searchRef = useRef<HTMLDivElement>(null)
+  useOnClickOutside(searchRef, (e) => {
+    setSearchFlag(false)
+  })
   function handleSearchWord(e: HTMLElement) {
     if (e.target.value.trim().length > 0) {
       dispatch(setSearchLoading(true))
@@ -49,8 +52,9 @@ const Header: FC<IProps> = () => {
   function searchFocus(e: HTMLElement) {
     setSearchFlag(true)
   }
-  function searchBlur(e: HTMLElement) {
-    // setSearchFlag(false)
+  function searchBlur(e: HTMLElement) {}
+  function searchClick(e: Event) {
+    // setSearchFlag(true)
   }
   useEffect(() => {
     dispatch(getSearchValueAction(searchWord))
@@ -86,6 +90,8 @@ const Header: FC<IProps> = () => {
             searchWord={handleSearchWord}
             searchFocus={searchFocus}
             searchBlur={searchBlur}
+            searchClick={searchClick}
+            ref={searchRef}
           />
           <span className="login">
             <Avatar>
